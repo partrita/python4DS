@@ -1,168 +1,168 @@
 (markdown)=
-# Markdown
+# 마크다운
 
-## Introduction
+## 소개
 
-In this chapter, you'll meet the lightweight markup language called *Markdown* that is very popular for lots of coding-related applications and in reproducible analysis. As an example of its many uses, this chapter is written in markdown!
+이 장에서는 코딩 관련 응용 프로그램과 재현 가능한 분석에 매우 인기 있는 경량 마크업 언어인 *마크다운*을 만나게 됩니다. 다양한 용도의 예로, 이 장은 마크다운으로 작성되었습니다!
 
-## Prerequisites
+## 전제 조건
 
-Although you can write markdown in any plain text editor, this book recommends [Visual Studio Code](https://code.visualstudio.com/) as a markdown editor. It can also render markdown files that are open so you can see what the finished, output product will look like; you'll need to install the **Markdown All in One** and **Markdown Preview Enhanced** extensions and then either right-click within a markdown file (extension `.md`) and choose *Markdown Preview Enhanced: Open Preview to the Side*.
+모든 일반 텍스트 편집기에서 마크다운을 작성할 수 있지만, 이 책에서는 마크다운 편집기로 [Visual Studio Code](https://code.visualstudio.com/)를 권장합니다. 또한 열려 있는 마크다운 파일을 렌더링하여 완성된 출력 제품이 어떻게 보일지 확인할 수 있습니다. **Markdown All in One** 및 **Markdown Preview Enhanced** 확장을 설치한 다음 마크다운 파일(확장자 `.md`) 내에서 마우스 오른쪽 버튼을 클릭하고 *Markdown Preview Enhanced: Open Preview to the Side*를 선택해야 합니다.
 
-If you're not using Visual Studio Code, you can experiment with Markdown in the text cells of Jupyter Notebooks in JupyterLab, in the text cells of Google Colab notebooks, or online via [Dillinger](https://dillinger.io/), an online live-coding markdown environment.
+Visual Studio Code를 사용하지 않는 경우 JupyterLab의 Jupyter Notebook 텍스트 셀, Google Colab 노트북의 텍스트 셀 또는 온라인 라이브 코딩 마크다운 환경인 [Dillinger](https://dillinger.io/)를 통해 마크다운을 실험해 볼 수 있습니다.
 
-### Introduction to Markdown
+### 마크다운 소개
 
-Markdown is different from What-You-See-Is-What-You-Get document preparation software such as Microsoft Word because the *input* (a form of plain text) looks different from the rendered *output*. In Word, you click buttons to achieve the same formatting. When writing markdown, you specify the formatting elements of your documents with instructions that are, more or less, like code. If you're familiar with how raw HTML and rendered HTML look, it's a similar idea (and HTML is itself a markup language). Note, however, that vanilla markdown cannot execute Python code even if you can include code snippets in it just as you could write down some code in a Word document.
+마크다운은 Microsoft Word와 같은 WYSIWYG(What-You-See-Is-What-You-Get) 문서 준비 소프트웨어와 다릅니다. *입력*(일반 텍스트 형식)이 렌더링된 *출력*과 다르게 보이기 때문입니다. Word에서는 버튼을 클릭하여 동일한 서식을 적용합니다. 마크다운을 작성할 때는 문서의 서식 요소를 다소 코드와 유사한 지침으로 지정합니다. 원시 HTML과 렌더링된 HTML이 어떻게 보이는지 익숙하다면 비슷한 아이디어입니다(HTML 자체도 마크업 언어입니다). 그러나 바닐라 마크다운은 Word 문서에 코드를 작성하는 것처럼 코드 조각을 포함할 수 있더라도 파이썬 코드를 실행할 수 없습니다.
 
-Markdown was created to be as readable as possible, even when you are writing it. It's also very simple, with few commands to remember: the idea is that you should focus on writing text rather than formatting.
+마크다운은 작성할 때에도 최대한 읽기 쉽게 만들어졌습니다. 또한 기억해야 할 명령이 거의 없는 매우 간단합니다. 아이디어는 서식보다는 텍스트 작성에 집중해야 한다는 것입니다.
 
-The standard extension for files that only contain markdown is `.md`, but you may also see `.qmd` in the context of markdown with executable code chunks. And you can find markdown in the cells of Jupyter notebooks (file extension `.ipynb`) too.
+마크다운만 포함된 파일의 표준 확장자는 `.md`이지만 실행 가능한 코드 청크가 있는 마크다운의 컨텍스트에서는 `.qmd`를 볼 수도 있습니다. 그리고 Jupyter 노트북 셀(파일 확장자 `.ipynb`)에서도 마크다운을 찾을 수 있습니다.
 
-There are plenty of situations in which markdown can be used to communicate:
+마크다운을 사용하여 의사소통할 수 있는 상황은 많습니다.
 
-- coders and data scientists often use markdown to write documents, for example the documentation of packages
-- to create websites, reports, slides, and research papers
-- in the text cells of Jupyter Notebooks
-- as a base format that tools like **pandoc** and **Quarto** can turn into other document types
-- to write books about data science!
+- 코더와 데이터 과학자는 종종 패키지 설명서와 같은 문서를 작성하는 데 마크다운을 사용합니다.
+- 웹사이트, 보고서, 슬라이드 및 연구 논문을 만드는 데 사용합니다.
+- Jupyter Notebook의 텍스트 셀에 사용합니다.
+- **pandoc** 및 **Quarto**와 같은 도구가 다른 문서 유형으로 변환할 수 있는 기본 형식으로 사용합니다.
+- 데이터 과학에 관한 책을 쓰는 데 사용합니다!
 
-Some of the advantages of markdown are:
+마크다운의 장점 중 일부는 다음과 같습니다.
 
-- Markdown files can be opened using by any plain text editor
-- Markdown is operating system independent
-- Markdown is very readable, even when not being rendered
-- Many websites support markdown syntax, eg Github (called Github-flavoured markdown) and Reddit
+- 마크다운 파일은 모든 일반 text 편집기를 사용하여 열 수 있습니다.
+- 마크다운은 운영 체제에 독립적입니다.
+- 마크다운은 렌더링되지 않은 경우에도 매우 읽기 쉽습니다.
+- Github(Github 스타일 마크다운이라고 함) 및 Reddit과 같은 많은 웹사이트에서 마크다운 구문을 지원합니다.
 
-The rest of this chapter will cover most of the markdown syntax.
+이 장의 나머지 부분에서는 대부분의 마크다운 구문을 다룹니다.
 
-#### The Markdown Syntax
+#### 마크다운 구문
 
-##### Headings
+##### 제목
 
-Let's run through the basics of markdown. For example, a single hash (`#`) denotes the title of a document, like so:
+마크다운의 기본 사항을 살펴보겠습니다. 예를 들어 단일 해시(`#`)는 다음과 같이 문서 제목을 나타냅니다.
 
 ```markdown
-# Heading
+# 제목
 ```
 
-The next level of sub-heading can be specified by two hashes, like this:
+다음 수준의 부제목은 다음과 같이 두 개의 해시로 지정할 수 있습니다.
 
 ```markdown
-## Sub-heading
+## 부제목
 ```
 
-Each next level heading gets successively smaller, for example:
+각 다음 수준 제목은 다음과 같이 점차 작아집니다.
 
 ```markdown
 
-### Phylum
+### 문
 
-#### Class
+#### 강
 
-##### Order
+##### 목
 
-###### Family
+###### 과
 
 ```
 
-becomes
+다음과 같이 됩니다.
 
-### Phylum
+### 문
 
-#### Class
+#### 강
 
-##### Order
+##### 목
 
-###### Family
+###### 과
 
-If you're using Visual Studio Code, and you're on the explorer panel, you can see the outline (the structure of headings and sub-headings) of your markdown document under the 'outline' drop down.
+Visual Studio Code를 사용하고 있고 탐색기 패널에 있는 경우 '개요' 드롭다운 아래에서 마크다운 문서의 개요(제목 및 부제목 구조)를 볼 수 있습니다.
 
-### In-Line Syntax
+### 인라인 구문
 
-Here are some other common syntax features that you'll need:
+다음은 필요한 몇 가지 다른 일반적인 구문 기능입니다.
 
-- to create *italic* text, it's `*one asterisk on either side of the text*` 
-- **bold** text is produced from `**two asterisks**`
-- ***bold italic*** is `***three asterisks***`
-- links are produced with square brackets for the text and parenthesis for the hyperlink, like this `[text](link)`
-- in-line code is shown by backticks, like this \`code\`
-- `~~strikethrough~~` looks like this ~~strikethrough~~
-- `^(superscript)` creates ^(superscript)
-- Maths is supported in-line via enclosing dollar signs, eg `${\displaystyle ds^{2}=\left(1-{\frac {r_{\mathrm {s} }}{r}}\right)^{-1}\,dr^{2}+r^{2}\,d\varphi ^{2}}$`, which renders as ${\displaystyle ds^{2}=\left(1-{\frac {r_{\mathrm {s} }}{r}}\right)^{-1}\,dr^{2}+r^{2}\,d\varphi ^{2}}$
-- Unicode is supported, so you can write symbols like ∰, as are emoji; syntax like `:tada:` creates :tada:
+- *기울임꼴* 텍스트를 만들려면 `*텍스트 양쪽에 별표 하나*`입니다.
+- **굵은** 텍스트는 `**별표 두 개**`로 만들어집니다.
+- ***굵은 기울임꼴***은 `***별표 세 개***`입니다.
+- 링크는 텍스트용 대괄호와 하이퍼링크용 괄호로 만들어집니다. 예: `[텍스트](링크)`
+- 인라인 코드는 다음과 같이 백틱으로 표시됩니다. \`코드\`
+- `~~취소선~~`은 다음과 같이 보입니다. ~~취소선~~
+- `^(위첨자)`는 ^(위첨자)를 만듭니다.
+- 수학은 달러 기호를 사용하여 인라인으로 지원됩니다. 예: `${\displaystyle ds^{2}=\left(1-{\frac {r_{\mathrm {s} }}{r}}\right)^{-1}\,dr^{2}+r^{2}\,d\varphi ^{2}}$`, 다음과 같이 렌더링됩니다. ${\displaystyle ds^{2}=\left(1-{\frac {r_{\mathrm {s} }}{r}}\right)^{-1}\,dr^{2}+r^{2}\,d\varphi ^{2}}$
+- 유니코드가 지원되므로 ∰와 같은 기호를 작성할 수 있으며 이모티콘도 마찬가지입니다. `:tada:`와 같은 구문은 :tada:를 만듭니다.
 
-### Text Block Syntax
+### 텍스트 블록 구문
 
-Quotes can be achieved by adding an arrow, `>`, to every line:
+인용문은 모든 줄에 화살표 `>`를 추가하여 만들 수 있습니다.
 
-> Here is a quote!
+> 여기 인용문이 있습니다!
 
-Unordered lists can be produced with either `-` or `*` on separate lines so that
+정렬되지 않은 목록은 별도의 줄에 `-` 또는 `*`를 사용하여 다음과 같이 만들 수 있습니다.
 
 ```markdown
-- first item
-- second item
-- third item
+- 첫 번째 항목
+- 두 번째 항목
+- 세 번째 항목
 ```
 
-becomes
+다음과 같이 됩니다.
 
-- first item
-- second item
-- third item
+- 첫 번째 항목
+- 두 번째 항목
+- 세 번째 항목
 
-Ordered lists can be created by simply writing successive numbers on successive lines:
+정렬된 목록은 연속된 줄에 연속된 숫자를 간단히 작성하여 만들 수 있습니다.
 
 ```markdown
-1. first item
-2. second item
-3. third item
+1. 첫 번째 항목
+2. 두 번째 항목
+3. 세 번째 항목
 ```
 
-becomes
+다음과 같이 됩니다.
 
-1. first item
-2. second item
-3. third item
+1. 첫 번째 항목
+2. 두 번째 항목
+3. 세 번째 항목
 
-Both types of list can be subsetted so that
+두 가지 유형의 목록 모두 다음과 같이 하위 집합으로 만들 수 있습니다.
 
 ```markdown
-- first item
-  - sub-item
-    - sub-sub-item
-- second item
+- 첫 번째 항목
+  - 하위 항목
+    - 하위 하위 항목
+- 두 번째 항목
 ```
 
-becomes
+다음과 같이 됩니다.
 
-- first item
-  - sub-item
-    - sub-sub-item
-- second item
+- 첫 번째 항목
+  - 하위 항목
+    - 하위 하위 항목
+- 두 번째 항목
 
-The basic syntax to create tables is
+표를 만드는 기본 구문은 다음과 같습니다.
 
 ```markdown
-| Cheese              | Country         | Cost per kg |
+| 치즈              | 국가         | kg당 비용 |
 |---------------------|-----------------|-------------|
-| Appleby's Cheshire  | UK              | £30         |
-| Edam                | Netherlands     | £8          |
-| Pélardon            | France          | £37         |
+| 애플비 체셔  | 영국              | £30         |
+| 에담                | 네덜란드     | £8          |
+| 펠라르동            | 프랑스          | £37         |
 ```
 
-which becomes
+다음과 같이 됩니다.
 
-| Cheese              | Country         | Cost per kg |
+| 치즈              | 국가         | kg당 비용 |
 |---------------------|-----------------|-------------|
-| Appleby's Cheshire  | UK              | £30         |
-| Edam                | Netherlands     | £8          |
-| Pélardon            | France          | £37         |
+| 애플비 체셔  | 영국              | £30         |
+| 에담                | 네덜란드     | £8          |
+| 펠라르동            | 프랑스          | £37         |
 
-but you will rarely want to write these out yourself! In practice, it's easiest to export a markdown file from a **pandas** data frame using `df.to_markdown()` or use the handy website, [markdown table generator](https://www.tablesgenerator.com/markdown_tables).
+하지만 직접 작성하고 싶지는 않을 것입니다! 실제로는 **pandas** 데이터 프레임에서 `df.to_markdown()`을 사용하여 마크다운 파일을 내보내거나 편리한 웹사이트인 [마크다운 테이블 생성기](https://www.tablesgenerator.com/markdown_tables)를 사용하는 것이 가장 쉽습니다.
 
-While inline code was rendered with backticks, you can render code blocks using three backticks and the name of the language like so:
+인라인 코드는 백틱으로 렌더링되었지만 다음과 같이 세 개의 백틱과 언어 이름을 사용하여 코드 블록을 렌더링할 수 있습니다.
 
 ````markdown
 ```python
@@ -172,7 +172,7 @@ df = pd.DataFrame([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),
 ```
 ````
 
-which gets rendered as:
+다음과 같이 렌더링됩니다.
 
 ```python
 import pandas as pd
@@ -180,9 +180,9 @@ df = pd.DataFrame([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),
                   columns=['a', 'b', 'c'])
 ```
 
-Note that there is syntax highlighting of data types and reserved keywords. The syntax highlighting supports a wide range of languages. Also note that the syntax is quite similar to what's used for code blocks that will be executed by **Quarto** when using markdown for publishing automated reports (more on this below).
+데이터 유형 및 예약된 키워드에 대한 구문 강조 표시가 있습니다. 구문 강조 표시는 다양한 언어를 지원합니다. 또한 이 구문은 자동화된 보고서를 게시하기 위해 마크다운을 사용할 때 **Quarto**에서 실행될 코드 블록에 사용되는 것과 매우 유사합니다(자세한 내용은 아래 참조).
 
-Display maths is rendered by double dollar signs, like so:
+표시 수학은 다음과 같이 이중 달러 기호로 렌더링됩니다.
 
 ```markdown
 $$
@@ -190,64 +190,64 @@ $$
 $$
 ```
 
-which renders as
+다음과 같이 렌더링됩니다.
 
 $$
 {\displaystyle ds^{2}=\left(1-{\frac {r_{\mathrm {s} }}{r}}\right)^{-1}\,dr^{2}+r^{2}\,d\varphi ^{2}\,,}
 $$
 
-To insert images, use the structure `![alt-text](url or filepath)`, for example
+이미지를 삽입하려면 `![대체 텍스트](url 또는 파일 경로)` 구조를 사용합니다. 예를 들면 다음과 같습니다.
 
 ```markdown
-![Logo of Python4DS](https://github.com/aeturrell/python4DS/blob/main/logo.png?raw=true)
+![Python4DS 로고](https://github.com/aeturrell/python4DS/blob/main/logo.png?raw=true)
 ```
 
-produces
+다음과 같이 생성됩니다.
 
-![Logo of Python4DS](https://github.com/aeturrell/python4DS/blob/main/logo.png?raw=true)
+![Python4DS 로고](https://github.com/aeturrell/python4DS/blob/main/logo.png?raw=true)
 
-You can also produce task lists, for example:
+다음과 같이 작업 목록을 만들 수도 있습니다.
 
 ```markdown
-- [x] Finish chapter 1
-- [ ] Edit chapter 2
-- [ ] Launch book :rocket:
+- [x] 1장 완료
+- [ ] 2장 편집
+- [ ] 책 출시 :rocket:
 ```
 
-produces
+다음과 같이 생성됩니다.
 
-- [x] Finish chapter 1
-- [ ] Edit chapter 2
-- [ ] Launch book :rocket:
+- [x] 1장 완료
+- [ ] 2장 편집
+- [ ] 책 출시 :rocket:
 
-Footnotes can be be created using `[^1]` followed by `[^2]`, and so on, or by content related ones like `[^note]`. Here are these three being used: one example[^1], and another[^2], while the third is here[^note] and has a label instead of a number (that you can't see when rendered). You'll need to scroll right to the bottom of the page to see the info associated with these footnotes, but the syntax for filling in their info is:
+각주는 `[^1]` 다음에 `[^2]` 등을 사용하거나 `[^참고]`와 같이 내용 관련 각주를 사용하여 만들 수 있습니다. 다음은 이 세 가지를 사용하는 예입니다. 한 가지 예[^1]와 다른 예[^2], 세 번째는 여기에 있으며[^참고] 숫자 대신 레이블이 있습니다(렌더링 시에는 볼 수 없음). 이러한 각주와 관련된 정보를 보려면 페이지 맨 아래로 스크롤해야 하지만 해당 정보를 채우는 구문은 다음과 같습니다.
 
 ```markdown
-[^1]: First footnote.
-[^2]: Every new line in a footnote should be prefixed with 2 spaces.  
-  This allows you to have a footnote with multiple lines.
-[^note]: Named footnotes will still render with numbers instead of the text but allow easier identification and linking.
+[^1]: 첫 번째 각주.
+[^2]: 각주의 모든 새 줄은 공백 2개로 시작해야 합니다.
+  이렇게 하면 여러 줄로 된 각주를 만들 수 있습니다.
+[^참고]: 이름이 지정된 각주는 텍스트 대신 숫자로 렌더링되지만 더 쉽게 식별하고 연결할 수 있습니다.
 ```
 
-[^1]: First footnote.
-[^2]: Every new line in a footnote should be prefixed with 2 spaces.  
-  This allows you to have a footnote with multiple lines.
-[^note]: Named footnotes will still render with numbers instead of the text but allow easier identification and linking.
+[^1]: 첫 번째 각주.
+[^2]: 각주의 모든 새 줄은 공백 2개로 시작해야 합니다.
+  이렇게 하면 여러 줄로 된 각주를 만들 수 있습니다.
+[^참고]: 이름이 지정된 각주는 텍스트 대신 숫자로 렌더링되지만 더 쉽게 식별하고 연결할 수 있습니다.
 
-Finally, to insert a line-break use
+마지막으로 줄 바꿈을 삽입하려면 다음을 사용합니다.
 
 ```markdown
 ***
 ```
 
-To produce this line-break:
+이 줄 바꿈을 생성하려면:
 
 ***
 
-### Other Markdown Resources
+### 기타 마크다운 자료
 
-There are plenty of good markdown resources out there:
+다음과 같은 좋은 마크다운 자료가 많이 있습니다.
 
-- the [Reddit markdown guide](https://www.reddit.com/wiki/markdown)
-- the [github markdown guide](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-- this [markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+- [Reddit 마크다운 가이드](https://www.reddit.com/wiki/markdown)
+- [Github 마크다운 가이드](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+- [이 마크다운 치트 시트](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)

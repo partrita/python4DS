@@ -1,12 +1,12 @@
-# Book settings
-# Learn more at https://jupyterbook.org/customize/config.html
+# 책 설정
+# 자세한 내용은 https://jupyterbook.org/customize/config.html 에서 확인하세요.
 
-title: Python for Data Science
-author: The Py4DS Community
+title: 데이터 과학을 위한 파이썬
+author: Py4DS 커뮤니티
 logo: logo.png
 exclude_patterns: [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", ".venv", "README.md"]
-# Force re-execution of notebooks on each build.
-# See https://jupyterbook.org/content/execute.html
+# 각 빌드 시 노트북 강제 재실행.
+# https://jupyterbook.org/content/execute.html 참조
 execute:
   execute_notebooks: force
   timeout: 120
@@ -15,32 +15,32 @@ execute:
   nb_output_stderr: show
 
 
-# Define the name of the latex output file for PDF builds
+# PDF 빌드를 위한 라텍스 출력 파일 이름 정의
 latex:
   latex_documents:
     targetname: book.tex
 
-# Add a bibtex file so that we can create citations
+# 인용 생성을 위한 bibtex 파일 추가
 bibtex_bibfiles:
   - references.bib
 
-# Information about where the book exists on the web
+# 웹에 책이 있는 위치에 대한 정보
 repository:
-  url: https://github.com/aeturrell/python4DS  # Online location of your book
-  branch: main  # Which branch of the repository should be used when creating links (optional)
+  url: https://github.com/aeturrell/python4DS  # 책의 온라인 위치
+  branch: main  # 링크 생성 시 사용할 저장소 브랜치 (선택 사항)
 
-# Add GitHub buttons to your book
-# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+# 책에 GitHub 버튼 추가
+# https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository 참조
 html:
   use_issues_button: true
   use_repository_button: true
-  favicon: "favicon.ico"  # A path to a favicon image
+  favicon: "favicon.ico"  # 파비콘 이미지 경로
   analytics:
-    google_analytics_id: "G-LXJC37BJVX"  # A GA id that can be used to track book views.
+    google_analytics_id: "G-LXJC37BJVX"  # 책 조회수 추적에 사용할 수 있는 GA ID
 
 launch_buttons:
   colab_url: "https://colab.research.google.com"
-  notebook_interface: "jupyterlab"  # or "classic"
+  notebook_interface: "jupyterlab"  # 또는 "classic"
   binderhub_url: "https://mybinder.org"
 
 sphinx:
@@ -50,4 +50,4 @@ sphinx:
     bibtex_reference_style: author_year
     suppress_warnings: ["mystnb.unknown_mime_type"]
     nb_execution_show_tb: true
-    nb_execution_raise_on_error: true  # Make build fail any content errors (don't want to publish if errors)
+    nb_execution_raise_on_error: true  # 콘텐츠 오류 발생 시 빌드 실패 (오류가 있는 경우 게시하지 않음)
