@@ -66,16 +66,10 @@ jobs:
       - name: Install dependencies
         run: |
           uv sync
-
-      - name: Build book
-        run: uv run jupyter-book build . --verbose
+          uv run playwright install --with-deps chromium
 
       - name: Build PDF
-        run: uv run jupyter-book build . --builder pdflatex
-
-      - name: Publish
-        if: steps.check-version.outputs.tag
-        run: uv run ghp-import -n -p -f _build/html
+        run: uv run jupyter-book build . --builder pdfhtml
 
       - name: Upload PDF to Release
         if: steps.check-version.outputs.tag
@@ -85,14 +79,5 @@ jobs:
           asset_path: _build/latex/book.pdf
           asset_name: book.pdf
           asset_content_type: application/pdf
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Publish the release notes
-        id: release_drafter
-        uses: release-drafter/release-drafter@v6.0.0
-        with:
-          publish: ${{ steps.check-version.outputs.tag != '' }}
-          tag: ${{ steps.check-version.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
