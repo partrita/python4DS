@@ -70,11 +70,26 @@ jobs:
       - name: Build book
         run: uv run jupyter-book build . --verbose
 
+      - name: Build PDF
+        run: uv run jupyter-book build . --builder pdflatex
+
       - name: Publish
         if: steps.check-version.outputs.tag
         run: uv run ghp-import -n -p -f _build/html
 
+      - name: Upload PDF to Release
+        if: steps.check-version.outputs.tag
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.release_drafter.outputs.upload_url }}
+          asset_path: _build/latex/book.pdf
+          asset_name: book.pdf
+          asset_content_type: application/pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Publish the release notes
+        id: release_drafter
         uses: release-drafter/release-drafter@v6.0.0
         with:
           publish: ${{ steps.check-version.outputs.tag != '' }}
