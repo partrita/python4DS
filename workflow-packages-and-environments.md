@@ -10,105 +10,105 @@ kernelspec:
   name: python3
 ---
 (workflow-packages-and-environments)=
-# Workflow: Packages and Environments
+# 워크플로: 패키지 및 환경
 
-In this chapter, you're going to learn about packages and how to install them plus virtual coding environments that keep your packages isolated and your projects reproducible.
+이 장에서는 패키지와 패키지 설치 방법, 그리고 패키지를 격리하고 프로젝트를 재현 가능하게 유지하는 가상 코딩 환경에 대해 배웁니다.
 
-## Packages
+## 패키지
 
-### Introduction
+### 소개
 
-Packages (also called libraries) are key to extending the functionality of Python. It won't be long before you'll need to install some. There are packages for geoscience, for building websites, for analysing genetic data, for economics—pretty much for anything you can think of. Packages are typically not written by the core maintainers of the Python language but by enthusiasts, firms, researchers, academics, all sorts! Because anyone can write packages, they vary widely in their quality and usefulness. There are some that you'll be seeing them again and again.
+패키지(라이브러리라고도 함)는 파이썬의 기능을 확장하는 데 핵심적인 역할을 합니다. 곧 일부 패키지를 설치해야 할 것입니다. 지구과학, 웹사이트 구축, 유전 데이터 분석, 경제학 등 생각할 수 있는 거의 모든 것에 대한 패키지가 있습니다. 패키지는 일반적으로 파이썬 언어의 핵심 유지 관리자가 아니라 열성팬, 회사, 연구원, 학자 등 모든 종류의 사람들이 작성합니다! 누구나 패키지를 작성할 수 있기 때문에 품질과 유용성은 매우 다양합니다. 계속해서 보게 될 몇 가지 패키지가 있습니다.
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Name a more iconic trio, I&#39;ll wait. <a href="https://t.co/pGaLuUxQ3r">pic.twitter.com/pGaLuUxQ3r</a></p>&mdash; Vicki Boykis (@vboykis) <a href="https://twitter.com/vboykis/status/1032631145035427840?ref_src=twsrc%5Etfw">August 23, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="ko" dir="ltr">이보다 더 상징적인 트리오를 말해보세요, 기다리겠습니다. <a href="https://t.co/pGaLuUxQ3r">pic.twitter.com/pGaLuUxQ3r</a></p>&mdash; 비키 보이키스 (@vboykis) <a href="https://twitter.com/vboykis/status/1032631145035427840?ref_src=twsrc%5Etfw">2018년 8월 23일</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-The three Python packages **numpy**, **pandas**, and **maplotlib**, which respectively provide numerical, data analysis, and plotting functionality, are ubiquitous. So many scripts begin by importing all three of them, as in the tweet above!
+각각 숫자, 데이터 분석 및 플로팅 기능을 제공하는 세 가지 파이썬 패키지 **numpy**, **pandas** 및 **maplotlib**는 어디에나 있습니다. 위 트윗에서처럼 세 가지 모두를 가져오는 것으로 시작하는 스크립트가 너무 많습니다!
 
-There are typically two steps to using a new Python package:
+새로운 파이썬 패키지를 사용하는 데는 일반적으로 두 단계가 있습니다.
 
-1. *install* the package on the command line (aka the terminal), eg using `uv install pandas`
+1. 명령줄(터미널이라고도 함)에서 패키지를 *설치*합니다(예: `uv install pandas` 사용).
 
-2. *import* the package into your Python session, eg using `import pandas as pd`
+2. 파이썬 세션으로 패키지를 *가져옵니다*(예: `import pandas as pd` 사용).
 
-When you issue an install command for a specific package, it is automatically downloaded from the internet and installed in the appropriate place on your computer. To install extra Python packages, you issue install commands to a text-based window called the "terminal".
+특정 패키지에 대한 설치 명령을 실행하면 인터넷에서 자동으로 다운로드되어 컴퓨터의 적절한 위치에 설치됩니다. 추가 파이썬 패키지를 설치하려면 "터미널"이라는 텍스트 기반 창에 설치 명령을 실행합니다.
 
-### The Command Line in Brief
+### 간략한 명령줄 설명
 
-The *terminal* or *command line* or sometimes the *command prompt* was labelled 4 in the screenshot of Visual Studio Code from the chapter on {ref}`introduction`. The terminal is a text-based way to issue all kinds of commands to your computer (not just Python commands) and knowing a little bit about it is really useful for coding (and more) because managing packages, environments (which we haven't yet discussed), and version control (ditto) can all be done via the terminal. We'll come to these in due course in the chapter on {ref}`command-line`, but for now, a little background on what the terminal is and what it does.
+*터미널* 또는 *명령줄* 또는 때로는 *명령 프롬프트*는 {ref}`introduction` 장의 Visual Studio Code 스크린샷에서 4번으로 표시되었습니다. 터미널은 컴퓨터에 모든 종류의 명령(파이썬 명령뿐만 아니라)을 실행하는 텍스트 기반 방법이며, 패키지, 환경(아직 논의하지 않음) 및 버전 관리(마찬가지)를 모두 터미널을 통해 수행할 수 있으므로 이에 대해 약간 아는 것은 코딩(및 그 이상)에 정말 유용합니다. {ref}`command-line` 장에서 적절한 시기에 이러한 내용을 다룰 것이지만, 지금은 터미널이 무엇이고 무엇을 하는지에 대한 약간의 배경 지식을 설명합니다.
 
 ```{note}
-To open up the command line within Visual Studio Code, use the <kbd>⌃</kbd> + <kbd>\`</kbd> keyboard shortcut (Mac) or <kbd>ctrl</kbd> + <kbd>\`</kbd> (Windows/Linux), or click "View > Terminal".
+Visual Studio Code 내에서 명령줄을 열려면 <kbd>⌃</kbd> + <kbd>\`</kbd> 키보드 단축키(Mac) 또는 <kbd>ctrl</kbd> + <kbd>\`</kbd>(Windows/Linux)를 사용하거나 "보기 > 터미널"을 클릭합니다.
 
-If you want to open up the command line independently of Visual Studio Code, search for "Terminal" on Mac and Linux, and "Powershell" on Windows.
+Visual Studio Code와 독립적으로 명령줄을 열려면 Mac 및 Linux에서는 "터미널"을, Windows에서는 "Powershell"을 검색합니다.
 ```
 
-Firstly, everything you can do by clicking on icons to launch programmes on your computer, you can also do via the terminal, also known as the command line. For many programmes, a lot of their functionality can be accessed using the command line, and other programmes *only* have a command line interface (CLI), including some that are used for data science.
+첫째, 컴퓨터에서 프로그램을 실행하기 위해 아이콘을 클릭하여 수행할 수 있는 모든 작업은 명령줄이라고도 하는 터미널을 통해서도 수행할 수 있습니다. 많은 프로그램의 경우 많은 기능을 명령줄을 사용하여 액세스할 수 있으며, 데이터 과학에 사용되는 일부 프로그램을 포함하여 다른 프로그램은 명령줄 인터페이스(CLI)*만* 가지고 있습니다.
 
 ```{tip}
-The command line interacts with your operating system and is used to create, activate, or change Python installations.
+명령줄은 운영 체제와 상호 작용하며 파이썬 설치를 만들거나, 활성화하거나, 변경하는 데 사용됩니다.
 ```
 
-Use Visual Studio Code to open a terminal window by clicking Terminal -> New Terminal on the list of commands at the very top of the window. If you have installed uv on your computer, your terminal should look something like this as your 'command prompt':
+창 맨 위에 있는 명령 목록에서 터미널 -> 새 터미널을 클릭하여 Visual Studio Code를 사용하여 터미널 창을 엽니다. 컴퓨터에 uv를 설치한 경우 터미널은 '명령 프롬프트'로 다음과 같이 표시됩니다.
 
 ```bash
-your-username@your-computer current-directory %
+사용자 이름@컴퓨터 현재 디렉터리 %
 ```
 
-on Mac, and the same but with '%' replaced by '$' on linux, and (using Powershell)
+Mac에서는 위와 같고, Linux에서는 '%'가 '$'로 대체되며, (Powershell 사용 시)
 
 ```powershell
 PS C:\Windows\System32>
 ```
 
-on Windows.
+Windows에서는 위와 같습니다.
 
-You can check that uv has successfully installed Python in your current project's folder by running
+다음을 실행하여 현재 프로젝트 폴더에 uv가 파이썬을 성공적으로 설치했는지 확인할 수 있습니다.
 
 ```bash
 uv run python --version
 ```
 
-For now, to at least try out the command line, let's use something that works across all three of the major operating systems. Type `uv run python` on the command prompt that came up in your new terminal window. You should see information about your installation of Python appear, including the version, followed by a Python prompt that looks like `>>>`. This is a kind of interactive Python session, in the terminal. It's much less rich than the one available in Visual Studio Code (it can't run scripts line-by-line, for example) but you can try `print('Hello World!')` and it will run, printing your message. To exit the terminal-based Python session, type `exit()` to go back to the regular command line.
+지금은 적어도 명령줄을 사용해 보기 위해 세 가지 주요 운영 체제 모두에서 작동하는 것을 사용해 봅시다. 새 터미널 창에 나타난 명령 프롬프트에 `uv run python`을 입력합니다. 버전을 포함하여 파이썬 설치에 대한 정보가 표시되고 그 뒤에 `>>>`와 같이 보이는 파이썬 프롬프트가 나타납니다. 이것은 터미널의 일종의 대화형 파이썬 세션입니다. Visual Studio Code에서 사용할 수 있는 것보다 훨씬 덜 풍부하지만(예를 들어 스크립트를 줄 단위로 실행할 수 없음) `print('Hello World!')`를 시도하면 실행되어 메시지가 인쇄됩니다. 터미널 기반 파이썬 세션을 종료하려면 `exit()`를 입력하여 일반 명령줄로 돌아갑니다.
 
-### Installing Packages
+### 패키지 설치하기
 
-To install extra Python packages, the default and easiest way is to use `uv add **packagename**`. There are over 330,000 Python packages on PyPI (the Python Package Index)! You can see what packages you have installed already by running `uv pip list` into the command line.
+추가 파이썬 패키지를 설치하는 기본적이고 가장 쉬운 방법은 `uv add **패키지이름**`을 사용하는 것입니다. PyPI(파이썬 패키지 인덱스)에는 330,000개가 넘는 파이썬 패키지가 있습니다! 명령줄에 `uv pip list`를 실행하여 이미 설치한 패키지를 볼 수 있습니다.
 
-`uv add ...` will install packages into the special Python environment in your current folder (it sits in a subdirectory called ".venv" which will be hidden by default on most systems.) It's really helpful and good practice to have one Python environment per project, and **uv** does this automatically for you.
+`uv add ...`는 현재 폴더의 특수 파이썬 환경에 패키지를 설치합니다(대부분의 시스템에서 기본적으로 숨겨져 있는 ".venv"라는 하위 디렉터리에 있음). 프로젝트당 하나의 파이썬 환경을 갖는 것은 정말 유용하고 좋은 습관이며 **uv**는 이를 자동으로 수행합니다.
 
-```{admonition} Exercise
-Try installing the **matplotlib**, **pandas**, **statsmodels**, and **skimpy** packages using `uv add`.
+```{admonition} 연습
+`uv add`를 사용하여 **matplotlib**, **pandas**, **statsmodels** 및 **skimpy** 패키지를 설치해 보십시오.
 ```
 
-### Using Packages
+### 패키지 사용하기
 
-Once you have installed a package, you need to be able to use it! This is usually done via an import statement at the top of your script or Jupyter Notebook. For example, to bring in **pandas**, it's
+패키지를 설치했으면 사용할 수 있어야 합니다! 이것은 일반적으로 스크립트 또는 Jupyter Notebook 상단의 가져오기 문을 통해 수행됩니다. 예를 들어 **pandas**를 가져오려면 다음과 같습니다.
 
 ```python
 import pandas as pd
 ```
 
-Why does Python do this? The idea of not just loading every package is to provide clarity over what function is being called from what package. It's also not necessary to load every package for every piece of analysis, and you often actually want to know what the *minimum* set of packages is to reproduce an analysis. Making the package imports explicit helps with all of that.
+파이썬은 왜 이렇게 할까요? 모든 패키지를 로드하지 않는다는 아이디어는 어떤 패키지에서 어떤 함수가 호출되는지에 대한 명확성을 제공하기 위한 것입니다. 또한 모든 분석에 대해 모든 패키지를 로드할 필요는 없으며 종종 분석을 재현하는 데 필요한 *최소* 패키지 집합이 무엇인지 알고 싶을 것입니다. 패키지 가져오기를 명시적으로 만들면 이 모든 것에 도움이 됩니다.
 
-You may also wonder why one doesn't just use `import pandas as pandas`. There's actually nothing stopping you doing this except i) it's convenient to have a shorter name and ii) there does tend to be a convention around imports, ie `pd` for **pandas** and `np` for **numpy**, and your code will be clearer to yourself and others if you follow the conventions.
+`import pandas as pandas`를 사용하지 않는 이유가 궁금할 수도 있습니다. 실제로는 i) 더 짧은 이름을 사용하는 것이 편리하고 ii) 가져오기에 대한 규칙이 있는 경향이 있기 때문에(예: **pandas**의 경우 `pd`, **numpy**의 경우 `np`) 코드가 자신과 다른 사람들에게 더 명확해지기 때문에 이를 막을 수 있는 것은 없습니다.
 
-## Virtual Code Environments
+## 가상 코드 환경
 
-Virtual code environments allow you to isolate all of the packages that you're using to do analysis for one project from the set of packages you might need for a different project. They're an important part of creating a reproducible analytical pipeline but a key benefit is that others can reproduce the environment you used and it's best practice to have an isolated environment per project.
+가상 코드 환경을 사용하면 한 프로젝트에 대한 분석을 수행하는 데 사용하는 모든 패키지를 다른 프로젝트에 필요할 수 있는 패키지 집합과 격리할 수 있습니다. 이는 재현 가능한 분석 파이프라인을 만드는 데 중요한 부분이지만 주요 이점은 다른 사람이 사용한 환경을 재현할 수 있고 프로젝트당 격리된 환경을 갖는 것이 가장 좋은 방법이라는 것입니다.
 
-To be more concrete, let's say you're using Python 3.9, **statsmodels**, and **pandas** for one project, project A. And, for project B, you need to use Python 3.10 with **numpy** and **scikit-learn**. Even with the same version of Python, best practice would be to have two separate virtual Python environments: environment A, with everything needed for project A, and environment B, with everything needed for project B. For the case where you're using different versions of Python, this isn't just best practice, it's essential.
+더 구체적으로 말하면, 프로젝트 A에 파이썬 3.9, **statsmodels** 및 **pandas**를 사용하고 있다고 가정해 보겠습니다. 그리고 프로젝트 B에는 파이썬 3.10과 **numpy** 및 **scikit-learn**을 사용해야 합니다. 동일한 버전의 파이썬을 사용하더라도 가장 좋은 방법은 두 개의 개별 가상 파이썬 환경을 갖는 것입니다. 프로젝트 A에 필요한 모든 것이 포함된 환경 A와 프로젝트 B에 필요한 모든 것이 포함된 환경 B입니다. 다른 버전의 파이썬을 사용하는 경우 이는 단순히 가장 좋은 방법이 아니라 필수적입니다.
 
-Many programming languages now come with an option to install packages and a version of the language in isolated environments. In Python, there are multiple tools for managing different environments. And, of those, the easiest to work with is probably [**uv**](https://docs.astral.sh/uv/).
+많은 프로그래밍 언어에는 이제 격리된 환경에 패키지와 언어 버전을 설치하는 옵션이 함께 제공됩니다. 파이썬에는 다양한 환경을 관리하기 위한 여러 도구가 있습니다. 그리고 그중에서 가장 작업하기 쉬운 것은 아마도 [**uv**](https://docs.astral.sh/uv/)일 것입니다.
 
-You can see all of the packages in the environment created in your current folder by running `uv pip list` on the command line. Here's an example of looking at the installed packages within this very book, filtering them just to the ones beginning with "s".
+명령줄에서 `uv pip list`를 실행하여 현재 폴더에 만들어진 환경의 모든 패키지를 볼 수 있습니다. 다음은 이 책 자체 내에서 설치된 패키지를 살펴보고 "s"로 시작하는 패키지만 필터링하는 예입니다.
 
 ```{code-cell} bash
 uv run pip list | grep ^s
 ```
 
-### The pyproject.toml file in Python Environments
+### 파이썬 환경의 pyproject.toml 파일
 
-You may have noticed that a file called `pyproject.toml` has been created.
+`pyproject.toml`이라는 파일이 만들어진 것을 눈치채셨을 것입니다.
 
 ```{code-cell} ipython
 import toml
@@ -117,12 +117,12 @@ from rich import print_json
 print_json(data=toml.load("pyproject.toml"))
 ```
 
-This lists all of the dependencies, and the version, of a **uv** Python project. There are lots of benefits to tracking what versions of packages you're using like this. One of the most important is that you can *share* projects with other people, and they can install them from these files too.
+여기에는 **uv** 파이썬 프로젝트의 모든 종속성과 해당 버전이 나열됩니다. 이와 같이 사용 중인 패키지 버전을 추적하면 많은 이점이 있습니다. 가장 중요한 이점 중 하나는 다른 사람과 프로젝트를 *공유*하고 해당 파일에서도 설치할 수 있다는 것입니다.
 
-As you install or remove packages, the `pyproject.toml` file changes in lockstep.
+패키지를 설치하거나 제거하면 `pyproject.toml` 파일이 함께 변경됩니다.
 
-Noe that Visual Studio Code shows which Python environment you are using when you open a Python script or Jupyter Notebook.
+Visual Studio Code는 파이썬 스크립트 또는 Jupyter Notebook을 열 때 사용 중인 파이썬 환경을 보여줍니다.
 
-![A typical user view in Visual Studio Code](https://github.com/aeturrell/coding-for-economists/blob/main/img/vscode_layout.png?raw=true)
+![Visual Studio Code의 일반적인 사용자 보기](https://github.com/aeturrell/coding-for-economists/blob/main/img/vscode_layout.png?raw=true)
 
-In the screenshot above, you can see the project-environment in two places: on the blue bar at the bottom of the screen, and (in 5), at the top right hand side of the interactive window. A similar top right indicator is present when you have a Jupyter Notebook open too.
+위 스크린샷에서는 화면 하단의 파란색 막대와 (5) 대화형 창의 오른쪽 상단 두 곳에서 프로젝트 환경을 볼 수 있습니다. Jupyter Notebook을 열었을 때도 비슷한 오른쪽 상단 표시기가 나타납니다.
