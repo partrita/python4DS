@@ -10,7 +10,7 @@ kernelspec:
   name: python3
 ---
 
-# Bibliography
+# 참고문헌
 
 ```{bibliography} references.bib
 :style: unsrtalpha
