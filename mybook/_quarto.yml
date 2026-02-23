@@ -1,0 +1,25 @@
+project:
+  type: book
+
+book:
+  title: "Python4DS"
+  author: "Norah Jones"
+  date: "2/23/2026"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+
+

@@ -24,6 +24,7 @@ dependencies = [
     "pandas-profiling>=3.2.0",
     "pandasdmx>=1.10.0",
     "pip>=24.3.1",
+    "pixi",
     "polars>=1.19.0",
     "pre-commit>=4.0.1",
     "pytest>=8.3.4",
@@ -41,3 +42,12 @@ dependencies = [
 
 [tool.ruff.lint]
 ignore = ["F405", "F403"]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["osx-arm64"]
+
+[tool.pixi.pypi-dependencies]
+python4ds = { path = ".", editable = true }
+
+[tool.pixi.tasks]
