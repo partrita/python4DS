@@ -1,8 +1,9 @@
 # Mac
 .DS_Store
 
-# jupyterbook
-_build/**
+# quarto
+_book/
+.quarto/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

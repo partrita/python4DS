@@ -1,25 +1,70 @@
 project:
   type: book
+  output-dir: _book
 
 book:
   title: "Python4DS"
-  author: "Norah Jones"
-  date: "2/23/2026"
+  author: "Arthur Turrell"
+  date: "2/24/2026"
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
+    - part: "Introduction"
+      chapters:
+        - introduction.ipynb
+        - prerequisites.ipynb
+    - part: "Quick Start"
+      chapters:
+        - whole-game.ipynb
+        - data-visualise.ipynb
+        - workflow-basics.ipynb
+        - data-transform.ipynb
+        - workflow-style.ipynb
+        - data-tidy.ipynb
+        - workflow-writing-code.ipynb
+        - data-import.ipynb
+        - workflow-packages-and-environments.qmd
+        - workflow-help.qmd
+    - part: "Visualise"
+      chapters:
+        - visualise.qmd
+        - vis-layers.ipynb
+        - exploratory-data-analysis.ipynb
+        - communicate-plots.ipynb
+    - part: "Transform"
+      chapters:
+        - boolean-data.ipynb
+        - numbers.ipynb
+        - strings.ipynb
+        - regex.ipynb
+        - categorical-data.ipynb
+        - dates-and-times.ipynb
+        - missing-values.ipynb
+        - joins.ipynb
+    - part: "Import"
+      chapters:
+        - spreadsheets.ipynb
+        - databases.ipynb
+        - rectangling.ipynb
+        - webscraping-and-apis.ipynb
+    - part: "Programme"
+      chapters:
+        - functions.ipynb
+        - iteration.ipynb
+        - command-line.qmd
+    - part: "Communicate"
+      chapters:
+        - markdown.qmd
+        - quarto.qmd
+    - part: "Appendix"
+      chapters:
+        - references.qmd
 
 bibliography: references.bib
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    theme: cosmo
+    code-fold: true
+    toc: true
   pdf:
     documentclass: scrreprt
-
-
-

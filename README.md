@@ -26,30 +26,31 @@ To install the development environment, run `uv sync` from the project root. Thi
 
 ## Building the book
 
-The book is compiled from source markdown and Jupyter notebook files [**jupyter-book**](https://jupyterbook.org/en/stable/) package.
+The book is compiled from source markdown and Jupyter notebook files using [**Quarto**](https://quarto.org/).
 
 To build the book, run
 
 ```bash
-uv run jupyter-book build .
+quarto render mybook
 ```
 
-Once this command is run, you should be able to look at the HTML files for the book locally on your computer. They will be in `_build`. The project is configured to stop the build if any errors are encountered. This is a frequent occurrence! You'll need to look at the logs to work out what might have gone wrong.
+Once this command is run, you should be able to look at the HTML files for the book locally on your computer. They will be in `mybook/_book`.
 
 ## Uploading the book
 
 ### Automatic uploads of the book
 
-This repo is configured such that new versions automatically build and upload the book to the website. The GitHub Action that does this is in `.github/workflows/release.yml`.
+This repo is configured such that new versions automatically build and upload the book to the website. The GitHub Action that does this is in `.github/workflows/deploy-quarto.yml`.
 
 ### Uploading the built book manually
 
 You shouldn't need to upload the book if you are a regular contributor. There are times when you might need to as an admin, but normally the book will be updated automatically upon release of a new version.
 
-See [here](https://jupyterbook.org/publish/gh-pages.html) for how to upload revised HTML files, but the key command is
+Normally, the book will be deployed through the CI/CD pipeline, but if you need to manually build and push it:
 
 ```bash
-uv run ghp-import -n -p -f _build/html
+quarto render mybook
+uv run ghp-import -n -p -f mybook/_book
 ```
 
 ## Code hygiene

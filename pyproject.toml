@@ -11,7 +11,6 @@ dependencies = [
     "ibis-framework[sqlite]>=9.5.0",
     "ipykernel>=6.29.5",
     "jupyter>=1.1.1",
-    "jupyter-book>=1.0.3",
     "jupyterlab>=4.3.4",
     "lets-plot==4.5.2",
     "nbclient>=0.10.2",
@@ -24,7 +23,6 @@ dependencies = [
     "pandas-profiling>=3.2.0",
     "pandasdmx>=1.10.0",
     "pip>=24.3.1",
-    "pixi",
     "polars>=1.19.0",
     "pre-commit>=4.0.1",
     "pytest>=8.3.4",
@@ -51,3 +49,6 @@ platforms = ["osx-arm64"]
 python4ds = { path = ".", editable = true }
 
 [tool.pixi.tasks]
+
+[tool.pixi.dependencies]
+quarto = ">=1.8.27,<2"

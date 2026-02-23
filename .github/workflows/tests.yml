@@ -46,9 +46,12 @@ jobs:
         run: |
           uv sync
 
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
       - name: build the book
         run: |
-          uv run jupyter-book build . --verbose
+          quarto render mybook --verbose
 
       - name: success
         run: |
