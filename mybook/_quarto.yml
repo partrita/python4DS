@@ -66,5 +66,3 @@ format:
     theme: cosmo
     code-fold: true
     toc: true
-  pdf:
-    documentclass: scrreprt

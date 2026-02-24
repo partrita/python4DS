@@ -24,15 +24,12 @@ jobs:
           pixi-version: v0.39.1
           cache: true
 
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-
       - name: Render Quarto
         shell: bash
         run: |
           # Render the book located in mybook/
           # We use 'pixi run' to ensure dependencies are available
-          pixi run quarto render mybook
+          pixi run render
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

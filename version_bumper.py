@@ -1,9 +1,3 @@
-# /// script
-# dependencies = [
-#   "toml>=0.10.2"
-# ]
-# ///
-import subprocess
 from typing import Literal
 
 import toml
@@ -31,19 +25,12 @@ def bump_version(part: Literal["major", "minor", "patch"] = "patch") -> None:
         raise ValueError("Invalid part value. Choose 'major', 'minor', or 'patch'.")
 
     new_version = f"{major}.{minor}.{patch}"
-    subprocess.run(
-        [
-            "uvx",
-            "--from=toml-cli",
-            "toml",
-            "set",
-            "--toml-path=pyproject.toml",
-            "project.version",
-            new_version,
-        ]
-    )
+    pyproject["project"]["version"] = new_version
 
-    print(f"Version bumped to {major}.{minor}.{patch}")
+    with open(file_path, "w") as f:
+        toml.dump(pyproject, f)
+
+    print(f"Version bumped to {new_version}")
 
 
 if __name__ == "__main__":

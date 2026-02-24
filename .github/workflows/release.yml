@@ -24,20 +24,16 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v5
+      - name: Set up pixi
+        uses: prefix-dev/setup-pixi@v0.8.1
         with:
-          # Install a specific version of uv.
-          version: "0.5.15"
+          pixi-version: v0.39.1
+          cache: true
 
       - name: Check if there is a parent commit
         id: check-parent-commit
         run: |
           echo "::set-output name=sha::$(git rev-parse --verify --quiet HEAD^)"
-
-      - name: check toml file working
-        run: |
-          echo uvx --from=toml-cli toml get --toml-path=pyproject.toml project.version
 
       - name: Detect and tag new version
         id: check-version
@@ -45,14 +41,14 @@ jobs:
         uses: salsify/action-detect-and-tag-new-version@v2.0.3
         with:
           version-command: |
-            uvx --from=toml-cli toml get --toml-path=pyproject.toml project.version
+            pixi run python -c "import toml; print(toml.load('pyproject.toml')['project']['version'])"
 
       - name: Bump version for developmental release
         if: "! steps.check-version.outputs.tag"
         run: |
-          uv run version_bumper.py &&
-          version=$(uvx --from=toml-cli toml get --toml-path=pyproject.toml project.version) &&
-          uvx --from=toml-cli toml set --toml-path=pyproject.toml project.version $version.dev.$(date +%s)
+          pixi run bump-version &&
+          version=$(pixi run python -c "import toml; print(toml.load('pyproject.toml')['project']['version'])") &&
+          pixi run python -c "import toml; p=toml.load('pyproject.toml'); p['project']['version']='$version.dev.$(date +%s)'; toml.dump(p, open('pyproject.toml', 'w'))"
       
       - name: set timezone
         run: |
@@ -63,16 +59,12 @@ jobs:
         run: |
           sudo apt-get -y install openssl graphviz nano texlive graphviz-dev unzip build-essential
 
-      - name: Install dependencies
-        run: |
-          uv sync
-
       - name: Build book
-        run: uv run jupyter-book build . --verbose
+        run: pixi run render --verbose
 
       - name: Publish
         if: steps.check-version.outputs.tag
-        run: uv run ghp-import -n -p -f _build/html
+        run: pixi run ghp-import
 
       - name: Publish the release notes
         uses: release-drafter/release-drafter@v6.0.0

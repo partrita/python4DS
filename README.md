@@ -18,20 +18,20 @@ When you make a pull request, pre-commit and build will run automatically, and f
 
 ## Installing the development environment locally
 
-You will need installations of Python 3.10 and [**uv**](https://docs.astral.sh/uv/). **uv** can be used to install certain distributions of Python through the `uv python install 3.10` command but you can use other Python installations.
+You will need installations of [**pixi**](https://pixi.sh/). **pixi** handles both the Python interpreter and all necessary dependencies, including Quarto.
 
 Clone this repository.
 
-To install the development environment, run `uv sync` from the project root. This should create a `.venv/` directory with the Python4DS environment in it. You can check that the environment has been installed by running `uv run python -V` in the project root directory.
+To install the development environment, run `pixi install` from the project root. This should create a `.pixi/` directory with the Python4DS environment in it. You can check that the environment has been installed by running `pixi run python -V` in the project root directory.
 
 ## Building the book
 
-The book is compiled from source markdown and Jupyter notebook files using [**Quarto**](https://quarto.org/).
+The book is compiled from source markdown and Jupyter notebook files using [**Quarto**](https://quarto.org/). We recommend using [**pixi**](https://pixi.sh/) for building the book to ensure all dependencies, including Quarto itself, are consistently available across platforms.
 
 To build the book, run
 
 ```bash
-quarto render mybook
+pixi run render
 ```
 
 Once this command is run, you should be able to look at the HTML files for the book locally on your computer. They will be in `mybook/_book`.
@@ -49,8 +49,8 @@ You shouldn't need to upload the book if you are a regular contributor. There ar
 Normally, the book will be deployed through the CI/CD pipeline, but if you need to manually build and push it:
 
 ```bash
-quarto render mybook
-uv run ghp-import -n -p -f mybook/_book
+pixi run render
+pixi run ghp-import
 ```
 
 ## Code hygiene
@@ -60,7 +60,7 @@ This book uses pre-commit to strip output from notebooks, lint, format, and chec
 To perform the pre-commit checks, use
 
 ```bash
-uv run pre-commit run --all-files
+pixi run pre-commit
 ```
 
 on your staged files. Ensure pre-commit reports all tests as having passed before committing.
@@ -69,7 +69,7 @@ on your staged files. Ensure pre-commit reports all tests as having passed befor
 
 1. Open a new branch with the version name, eg `v1.0.4`
 
-2. Change the version in `pyproject.toml` (you can run `uv run version_bumper.py`, which has script-level dependencies)
+2. Change the version in `pyproject.toml` (you can run `pixi run bump-version`, which has script-level dependencies)
 
 3. Commit the change with a new version label (eg `v1.0.4`) as the commit message
 

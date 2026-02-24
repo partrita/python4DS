@@ -22,16 +22,11 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Set up Python
-        uses: actions/setup-python@v5.3.0
+      - name: Set up pixi
+        uses: prefix-dev/setup-pixi@v0.8.1
         with:
-          python-version: "3.10"
-  
-      - name: Install uv
-        uses: astral-sh/setup-uv@v5
-        with:
-          # Install a specific version of uv.
-          version: "0.5.2"
+          pixi-version: v0.39.1
+          cache: true
 
       - name: set timezone
         run: |
@@ -42,16 +37,9 @@ jobs:
         run: |
           sudo apt-get -y install openssl graphviz nano texlive graphviz-dev unzip build-essential
 
-      - name: Install dependencies
-        run: |
-          uv sync
-
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-
       - name: build the book
         run: |
-          quarto render mybook --verbose
+          pixi run render --verbose
 
       - name: success
         run: |

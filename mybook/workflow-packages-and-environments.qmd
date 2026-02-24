@@ -26,7 +26,7 @@ The three Python packages **numpy**, **pandas**, and **maplotlib**, which respec
 
 There are typically two steps to using a new Python package:
 
-1. *install* the package on the command line (aka the terminal), eg using `uv add pandas`
+1. *install* the package on the command line (aka the terminal), eg using `pixi add pandas`
 
 2. *import* the package into your Python session, eg using `import pandas as pd`
 
@@ -48,7 +48,7 @@ Firstly, everything you can do by clicking on icons to launch programmes on your
 The command line interacts with your operating system and is used to create, activate, or change Python installations.
 ```
 
-Use Visual Studio Code to open a terminal window by clicking Terminal -> New Terminal on the list of commands at the very top of the window. If you have installed uv on your computer, your terminal should look something like this as your 'command prompt':
+Use Visual Studio Code to open a terminal window by clicking Terminal -> New Terminal on the list of commands at the very top of the window. If you have installed pixi on your computer, your terminal should look something like this as your 'command prompt':
 
 ```bash
 your-username@your-computer current-directory %
@@ -62,22 +62,22 @@ PS C:\Windows\System32>
 
 on Windows.
 
-You can check that uv has successfully installed Python in your current project's folder by running
+You can check that pixi has successfully installed Python in your current project's folder by running
 
 ```bash
-uv run python --version
+pixi run python --version
 ```
 
-For now, to at least try out the command line, let's use something that works across all three of the major operating systems. Type `uv run python` on the command prompt that came up in your new terminal window. You should see information about your installation of Python appear, including the version, followed by a Python prompt that looks like `>>>`. This is a kind of interactive Python session, in the terminal. It's much less rich than the one available in Visual Studio Code (it can't run scripts line-by-line, for example) but you can try `print('Hello World!')` and it will run, printing your message. To exit the terminal-based Python session, type `exit()` to go back to the regular command line.
+For now, to at least try out the command line, let's use something that works across all three of the major operating systems. Type `pixi run python` on the command prompt that came up in your new terminal window. You should see information about your installation of Python appear, including the version, followed by a Python prompt that looks like `>>>`. This is a kind of interactive Python session, in the terminal. It's much less rich than the one available in Visual Studio Code (it can't run scripts line-by-line, for example) but you can try `print('Hello World!')` and it will run, printing your message. To exit the terminal-based Python session, type `exit()` to go back to the regular command line.
 
 ### Installing Packages
 
-To install extra Python packages, the default and easiest way is to use `uv add **packagename**`. There are over 330,000 Python packages on PyPI (the Python Package Index)! You can see what packages you have installed already by running `uv pip list` into the command line.
+To install extra Python packages, the default and easiest way is to use `pixi add **packagename**`. There are over 330,000 Python packages on PyPI (the Python Package Index)! You can see what packages you have installed already by running `pixi list` into the command line.
 
-`uv add ...` will install packages into the special Python environment in your current folder (it sits in a subdirectory called ".venv" which will be hidden by default on most systems.) It's really helpful and good practice to have one Python environment per project, and **uv** does this automatically for you.
+`pixi add ...` will install packages into the special Python environment in your current folder (it sits in a subdirectory called ".pixi" which will be hidden by default on most systems.) It's really helpful and good practice to have one Python environment per project, and **pixi** does this automatically for you.
 
 ```{admonition} Exercise
-Try installing the **matplotlib**, **pandas**, **statsmodels**, and **skimpy** packages using `uv add`.
+Try installing the **matplotlib**, **pandas**, **statsmodels**, and **skimpy** packages using `pixi add`.
 ```
 
 ### Using Packages
@@ -98,12 +98,12 @@ Virtual code environments allow you to isolate all of the packages that you're u
 
 To be more concrete, let's say you're using Python 3.9, **statsmodels**, and **pandas** for one project, project A. And, for project B, you need to use Python 3.10 with **numpy** and **scikit-learn**. Even with the same version of Python, best practice would be to have two separate virtual Python environments: environment A, with everything needed for project A, and environment B, with everything needed for project B. For the case where you're using different versions of Python, this isn't just best practice, it's essential.
 
-Many programming languages now come with an option to install packages and a version of the language in isolated environments. In Python, there are multiple tools for managing different environments. And, of those, the easiest to work with is probably [**uv**](https://docs.astral.sh/uv/).
+Many programming languages now come with an option to install packages and a version of the language in isolated environments. In Python, there are multiple tools for managing different environments. And, of those, the easiest to work with is probably [**pixi**](https://docs.astral.sh/pixi/).
 
-You can see all of the packages in the environment created in your current folder by running `uv pip list` on the command line. Here's an example of looking at the installed packages within this very book, filtering them just to the ones beginning with "s".
+You can see all of the packages in the environment created in your current folder by running `pixi list` on the command line. Here's an example of looking at the installed packages within this very book, filtering them just to the ones beginning with "s".
 
 ```{code-cell} bash
-uv run pip list | grep ^s
+pixi list | grep ^s
 ```
 
 ### The pyproject.toml file in Python Environments
@@ -117,7 +117,7 @@ from rich import print_json
 print_json(data=toml.load("pyproject.toml"))
 ```
 
-This lists all of the dependencies, and the version, of a **uv** Python project. There are lots of benefits to tracking what versions of packages you're using like this. One of the most important is that you can *share* projects with other people, and they can install them from these files too.
+This lists all of the dependencies, and the version, of a **pixi** Python project. There are lots of benefits to tracking what versions of packages you're using like this. One of the most important is that you can *share* projects with other people, and they can install them from these files too.
 
 As you install or remove packages, the `pyproject.toml` file changes in lockstep.
 
