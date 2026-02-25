@@ -99,8 +99,23 @@ pixi list | grep ^s
 ```{python}
 import toml
 from rich import print_json
+from pathlib import Path
 
-print_json(data=toml.load("pyproject.toml"))
+# Find project root by looking for pyproject.toml upwards
+def find_pyproject(start_path):
+    for path in [start_path] + list(start_path.parents):
+        if (path / "pyproject.toml").exists():
+            return path / "pyproject.toml"
+    return None
+
+pyproject_path = find_pyproject(Path.cwd())
+
+if pyproject_path:
+    with open(pyproject_path, "r", encoding="utf-8") as f:
+        config = toml.load(f)
+    print_json(data=config)
+else:
+    print("pyproject.toml not found")
 ```
 
 이 파일은 **pixi** 파이썬 프로젝트의 모든 의존성 패키지와 버전을 나열합니다. 사용 중인 패키지 버전을 이렇게 추적하는 것에는 많은 이점이 있습니다. 가장 중요한 것 중 하나는 프로젝트를 다른 사람과 *공유*할 수 있고, 그들도 이 파일들로부터 환경을 그대로 설치할 수 있다는 점입니다.
