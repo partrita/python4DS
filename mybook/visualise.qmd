@@ -1,6 +1,6 @@
 # 시각화 (Visualisation) {#sec-visualise}
 
-이 책의 첫 번째 부분을 읽고 나면, 데이터 과학을 수행하기 위한 가장 중요한 도구들의 기초를 이해하게 됩니다. 이제 세부 사항으로 뛰어들 시간입니다. 책의 이 부분에서는 데이터 시각화에 대해 더 깊이 배우고( @sec-vis-layers에서), 다양한 종류의 데이터 시각화에 대한 세부 사항들을 본격적으로 다룰 것입니다( @sec-exploratory-data-analysis 및 @sec-communicate-plots에서). 이 짧은 장에서는 시각화를 만드는 다양한 방법과 시각화의 다양한 목적에 대해 논의합니다.
+이 책의 첫 번째 부분을 읽고 나면, 데이터 과학을 수행하기 위한 가장 중요한 도구들의 기초를 이해하게 됩니다. 이제 세부 사항으로 뛰어들 시간입니다. 책의 이 부분에서는 데이터 시각화에 대해 더 깊이 배우고( @sec-vis-layers 에서), 다양한 종류의 데이터 시각화에 대한 세부 사항들을 본격적으로 다룰 것입니다( @sec-exploratory-data-analysis 및 @sec-communicate-plots 에서). 이 짧은 장에서는 시각화를 만드는 다양한 방법과 시각화의 다양한 목적에 대해 논의합니다.
 
 ## 데이터 시각화의 철학 (Philosophies of data visualisation)
 
@@ -87,7 +87,7 @@ plt.show()
 
 탐색적 시각화는 대개 빠르고 거칠며(quick and dirty), 유연하기도 합니다. 일부 탐색적 데이터 시각화는 자동화될 수 있으며, [**skimpy**](https://aeturrell.github.io/skimpy/)를 포함하여 이를 돕는 수많은 패키지가 있습니다.
 
-본인과 공동 저자/협업자 외에는 탐색적 시각화를 보게 될 사람이 많지 않아야 합니다! 이들은 대개 빠르게 만들어지고, 수가 많으며, 일회용입니다. 이에 대해서는 @sec-exploratory-data-analysis에서 더 자세히 살펴보겠습니다.
+본인과 공동 저자/협업자 외에는 탐색적 시각화를 보게 될 사람이 많지 않아야 합니다! 이들은 대개 빠르게 만들어지고, 수가 많으며, 일회용입니다. 이에 대해서는 @sec-exploratory-data-analysis 에서 더 자세히 살펴보겠습니다.
 
 ### 과학적 데이터 시각화 (Scientific Data Viz)
 
