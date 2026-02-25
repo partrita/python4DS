@@ -6,6 +6,7 @@ book:
   title: "Python4DS"
   author: "Arthur Turrell"
   date: "2/24/2026"
+  language: ko
   chapters:
     - index.qmd
     - part: "서론"
@@ -58,8 +59,13 @@ book:
 
 bibliography: references.bib
 
+execute:
+  enabled: true
+  freeze: auto
+
 format:
   html:
     theme: cosmo
     code-fold: true
     toc: true
+    code-summary: "코드 보기"

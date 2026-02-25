@@ -9,8 +9,7 @@ kernelspec:
   language: python
   name: python3
 ---
-(command-line)=
-# 명령줄 (The Command Line)
+# 명령줄 (The Command Line) {#sec-command-line}
 
 이 장에서는 *명령줄(command line)*을 만나보고 사용법을 배울 것입니다. `pixi add <packagename>`과 같은 몇 가지 주요 명령어를 제외하면, 이 책의 나머지 부분을 따라가기 위해 명령줄 사용법을 반드시 알아야 하는 것은 아닙니다. 하지만 명령줄에 대한 아주 작은 지식이라도 코딩에서는 큰 도움이 되며 여러분에게 유용할 것입니다.
 

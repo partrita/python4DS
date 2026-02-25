@@ -9,8 +9,7 @@ kernelspec:
   language: python
   name: python3
 ---
-(workflow-packages-and-environments)=
-# 워크플로우: 패키지와 환경 (Workflow: Packages and Environments)
+# 워크플로우: 패키지와 환경 (Workflow: Packages and Environments) {#sec-workflow-packages-and-environments}
 
 이 장에서는 패키지와 패키지를 설치하는 방법, 그리고 패키지를 격리하여 프로젝트를 재현 가능하게 유지해 주는 가상 코딩 환경에 대해 배울 것입니다.
 
@@ -34,7 +33,7 @@ kernelspec:
 
 ### 명령줄 요약 (The Command Line in Brief)
 
-*터미널(terminal)* 또는 *명령줄(command line)*, 또는 가끔 *명령 프롬프트(command prompt)*라고 불리는 곳은 {ref}`introduction` 장의 Visual Studio Code 스크린샷에서 4번으로 표시되었습니다. 터미널은 (파이썬 명령뿐만 아니라) 여러분의 컴퓨터에 온갖 종류의 명령을 내리는 텍스트 기반 방법입니다. 패키지 관리, 환경(아직 논의하지 않았습니다), 버전 관리(마찬가지입니다) 등이 모두 터미널을 통해 수행될 수 있기 때문에 명령줄에 대해 조금 아는 것은 코딩(및 그 이상)에서 정말 유용합니다. 이에 대해서는 {ref}`command-line` 장에서 자세히 다루겠지만, 지금은 터미널이 무엇이고 무엇을 하는지 배경지식을 조금 알아보겠습니다.
+*터미널(terminal)* 또는 *명령줄(command line)*, 또는 가끔 *명령 프롬프트(command prompt)*라고 불리는 곳은 @sec-introduction 장의 Visual Studio Code 스크린샷에서 4번으로 표시되었습니다. 터미널은 (파이썬 명령뿐만 아니라) 여러분의 컴퓨터에 온갖 종류의 명령을 내리는 텍스트 기반 방법입니다. 패키지 관리, 환경(아직 논의하지 않았습니다), 버전 관리(마찬가지입니다) 등이 모두 터미널을 통해 수행될 수 있기 때문에 명령줄에 대해 조금 아는 것은 코딩(및 그 이상)에서 정말 유용합니다. 이에 대해서는 @sec-command-line 장에서 자세히 다루겠지만, 지금은 터미널이 무엇이고 무엇을 하는지 배경지식을 조금 알아보겠습니다.
 
 ```{note}
 Visual Studio Code 내에서 명령줄을 열려면, <kbd>⌃</kbd> + <kbd>\`</kbd> 단축키(맥) 또는 <kbd>ctrl</kbd> + <kbd>\`</kbd>(윈도우/리눅스)를 사용하거나 "View > Terminal"을 클릭하세요.

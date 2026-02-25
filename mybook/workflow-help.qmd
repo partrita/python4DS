@@ -9,8 +9,7 @@ kernelspec:
   language: python
   name: python3
 ---
-(workflow-help)=
-# 후기: 추가 도움 받기 (Postscript: Getting Further Help)
+# 후기: 추가 도움 받기 (Postscript: Getting Further Help) {#sec-workflow-help}
 
 이 책은 외딴섬이 아닙니다. 이 책 하나만으로 데이터 과학을 위한 파이썬을 마스터할 수는 없습니다. 이 책에서 설명한 기술들을 여러분의 데이터에 적용하기 시작하면 곧 우리가 답하지 않은 질문들을 마주하게 될 것입니다. 이 섹션에서는 도움을 받는 몇 가지 팁과 학습을 이어가는 데 도움이 되는 방법들을 설명합니다.
 
