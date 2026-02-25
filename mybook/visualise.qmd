@@ -1,17 +1,3 @@
----
-jupytext:
-  cell_metadata_filter: -all
-  formats: md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: '0.8'
-    jupytext_version: 1.5.0
-kernelspec:
-  display_name: python3
-  language: python
-  name: python3
----
 # 시각화 (Visualisation) {#sec-visualise}
 
 이 책의 첫 번째 부분을 읽고 나면, 데이터 과학을 수행하기 위한 가장 중요한 도구들의 기초를 이해하게 됩니다. 이제 세부 사항으로 뛰어들 시간입니다. 책의 이 부분에서는 데이터 시각화에 대해 더 깊이 배우고( @sec-vis-layers에서), 다양한 종류의 데이터 시각화에 대한 세부 사항들을 본격적으로 다룰 것입니다( @sec-exploratory-data-analysis 및 @sec-communicate-plots에서). 이 짧은 장에서는 시각화를 만드는 다양한 방법과 시각화의 다양한 목적에 대해 논의합니다.
@@ -36,10 +22,7 @@ kernelspec:
 
 세 가지 중 첫 번째는 *탐색적 데이터 시각화*이며, 데이터를 살펴보고 이해하려고 노력할 때 수행하는 종류입니다. 단순히 데이터를 플롯하는 것만으로도 발생할 수 있는 모든 문제를 파악하는 데 정말 좋은 전략이 됩니다. 이는 동일한 평균, 표준 편차, 상관관계를 가지면서도 데이터 분포는 매우 다른 네 개의 서로 다른 데이터셋인 앤스컴의 콰르텟(Anscombe's quartet)으로 가장 유명하게 증명되었습니다.
 
-```{code-cell} ipython3
----
-tags: [remove-input]
----
+```{python}
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt

@@ -163,13 +163,13 @@ Visual Studio Code를 사용 중이고 탐색기 패널에 있다면, 'outline' 
 
 인라인 코드는 백틱으로 렌더링 되었지만, 코드 블록은 세 개의 백틱과 언어 이름을 사용하여 다음과 같이 렌더링 할 수 있습니다:
 
-````markdown
-```python
-import pandas as pd
-df = pd.DataFrame([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),
-                  columns=['a', 'b', 'c'])
-```
-````
+> ```markdown
+> ```python
+> import pandas as pd
+> df = pd.DataFrame([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),
+>                   columns=['a', 'b', 'c'])
+> ```
+> ```
 
 렌더링 된 결과는 다음과 같습니다:
 
