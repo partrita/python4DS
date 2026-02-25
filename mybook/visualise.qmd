@@ -13,29 +13,29 @@ kernelspec:
   name: python3
 ---
 (visualise)=
-# Visualisation
+# 시각화 (Visualisation)
 
-After reading the first part of the book, you understand the basics of the most important tools for doing data science. Now it’s time to start diving into the details. In this part of the book, you’ll learn about visualising data in further depth (in {ref}`vis-layers`), and get further stuck into the details of the different kinds of data visualisation (in {ref}`exploratory-data-analysis` and {ref}`communicate-plots`). In this short chapter, we discuss the different ways to create visualisations, and the different purposes of visualisations.
+이 책의 첫 번째 부분을 읽고 나면, 데이터 과학을 수행하기 위한 가장 중요한 도구들의 기초를 이해하게 됩니다. 이제 세부 사항으로 뛰어들 시간입니다. 책의 이 부분에서는 데이터 시각화에 대해 더 깊이 배우고( {ref}`vis-layers`에서), 다양한 종류의 데이터 시각화에 대한 세부 사항들을 본격적으로 다룰 것입니다( {ref}`exploratory-data-analysis` 및 {ref}`communicate-plots`에서). 이 짧은 장에서는 시각화를 만드는 다양한 방법과 시각화의 다양한 목적에 대해 논의합니다.
 
-## Philosophies of data visualisation
+## 데이터 시각화의 철학 (Philosophies of data visualisation)
 
-There are broadly two categories of approach to using code to create data visualisations: *imperative* (build what you want from individual elements) and *declarative* (say what you want from a list of pre-existing options). Choosing which to use involves a trade-off: imperative libraries offer you flexibility but at the cost of some verbosity; declarative libraries offer you a quick way to plot your data, but only if it’s in the right format to begin with, and customisation to special chart types is more difficult.
+코드를 사용하여 데이터 시각화를 만드는 방식에는 크게 두 가지 카테고리가 있습니다: *명령형(imperative)* (개별 요소들로부터 원하는 것을 구축함) 방식과 *선언적(declarative)* (기존 옵션 목록에서 원하는 것을 말함) 방식입니다. 어떤 것을 선택할지는 트레이드오프 관계에 있습니다: 명령형 라이브러리는 유연성을 제공하지만 코드가 다소 장황해질 수 있습니다. 선언적 라이브러리는 데이터를 플롯하는 빠른 방법을 제공하지만, 데이터가 처음부터 올바른 형식이어야 하며 특수한 차트 유형으로 커스텀하기가 더 어렵습니다.
 
-Python has many excellent plotting packages, including perhaps the most powerful imperative plotting package around, **matplotlib**, and an amazing declarative library that we already saw, **lets-plot**. These two libraries will get you a long way, and each could be worthy of an entire book themselves. Fortunately for us, though, we can do 95% of what we need with a small number of commands from one or the other of them. In general, to keep this book as light as possible, we've opted to use **lets-plot** wherever possible—and {ref}`vis-layers` is going to take you on a more in-depth tour of how to use it yourself.
+파이썬에는 아마도 현존하는 가장 강력한 명령형 플로팅 패키지인 **matplotlib**와 이미 보았던 놀라운 선언적 라이브러리인 **lets-plot**을 포함하여 훌륭한 플로팅 패키지들이 많이 있습니다. 이 두 라이브러리만으로도 많은 일을 할 수 있으며, 각각 한 권의 책이 될 만큼 가치가 있습니다. 하지만 다행히도 우리는 이 중 하나에서 몇 가지 명령어만으로 필요한 작업의 95%를 처리할 수 있습니다. 일반적으로 이 책을 최대한 가볍게 유지하기 위해 가능한 모든 곳에서 **lets-plot**을 사용하기로 했습니다—그리고 {ref}`vis-layers` 장에서 이를 직접 사용하는 방법에 대한 더 심층적인 투어를 제공할 것입니다.
 
-## Purposes of data visualisation
+## 데이터 시각화의 목적 (Purposes of data visualisation)
 
-Data visualisation has all kinds of different purposes. It can be useful to bear in mind three broad categories of visualisation that are out there:
+데이터 시각화에는 온갖 다양한 목적이 있습니다. 시중의 시각화를 크게 세 가지 범주로 나누어 생각하면 유용할 수 있습니다:
 
-- exploratory
-- scientific
-- narrative
+- 탐색적 (exploratory)
+- 과학적 (scientific)
+- 서사적 (narrative)
 
-Let's look at each in a bit more detail.
+각각에 대해 좀 더 자세히 살펴보겠습니다.
 
-### Exploratory Data Viz
+### 탐색적 데이터 시각화 (Exploratory Data Viz)
 
-The first of the three kinds is *exploratory data visualisation*, and it's the kind that you do when you're looking and data and trying to understand it. Just plotting the data is a really good strategy for getting a feel for any issues there might be. This is perhaps most famously demonstrated by Anscombe's quartet: four different datasets with the same mean, standard deviation, and correlation but very different data distributions.
+세 가지 중 첫 번째는 *탐색적 데이터 시각화*이며, 데이터를 살펴보고 이해하려고 노력할 때 수행하는 종류입니다. 단순히 데이터를 플롯하는 것만으로도 발생할 수 있는 모든 문제를 파악하는 데 정말 좋은 전략이 됩니다. 이는 동일한 평균, 표준 편차, 상관관계를 가지면서도 데이터 분포는 매우 다른 네 개의 서로 다른 데이터셋인 앤스컴의 콰르텟(Anscombe's quartet)으로 가장 유명하게 증명되었습니다.
 
 ```{code-cell} ipython3
 ---
@@ -103,18 +103,18 @@ plt.suptitle("Anscombe's Quartet")
 plt.show()
 ```
 
-Exploratory visualisation is usually quick and dirty, and flexible too. Some exploratory data viz can be automated, and there's a whole host of packages to help with this, including [**skimpy**](https://aeturrell.github.io/skimpy/).
+탐색적 시각화는 대개 빠르고 거칠며(quick and dirty), 유연하기도 합니다. 일부 탐색적 데이터 시각화는 자동화될 수 있으며, [**skimpy**](https://aeturrell.github.io/skimpy/)를 포함하여 이를 돕는 수많은 패키지가 있습니다.
 
-Beyond you and perhaps your co-authors/collaborators, however, not many other people should be seeing your exploratory visualisation! They will typically be worked up quickly, be numerous, and be throw-away. We'll look more at this in {ref}`exploratory-data-analysis`.
+본인과 공동 저자/협업자 외에는 탐색적 시각화를 보게 될 사람이 많지 않아야 합니다! 이들은 대개 빠르게 만들어지고, 수가 많으며, 일회용입니다. 이에 대해서는 {ref}`exploratory-data-analysis`에서 더 자세히 살펴보겠습니다.
 
-### Scientific Data Viz
+### 과학적 데이터 시각화 (Scientific Data Viz)
 
-The second kind, scientific data visualisation, is the prime cut of your exploratory visualisation. It's the kind of plot you might include in a more technical paper, the picture that says a thousand words. I often think of the first image of a black hole {cite:t}`akiyama2019first` as a prime example of this. You can get away with having a high density of information in a scientific plot and, in short format journals, you may need to. The journal Physical Review Letters, which has an 8 page limit, has a classic of this genre in more or less every issue. Ensuring that important values can be accurately read from the plot is especially important in these kinds of charts. But they can also be the kind of plot that presents the killer results in a study; they might not be exciting to people who don't look at charts for a living, but they might be exciting and, just as importantly, understandable by your peers.
+두 번째 종류인 과학적 데이터 시각화는 탐색적 시각화의 정수입니다. 더 기술적인 논문에 포함할 법한 종류의 플롯이며, 천 마디 말보다 한 장의 그림이 더 많은 것을 말해줍니다. 저는 블랙홀의 첫 번째 이미지 {cite:t}`akiyama2019first`를 이 분야의 전형적인 예로 생각하곤 합니다. 과학적 플롯에서는 정보 밀도가 높아도 괜찮으며, 짧은 형식의 저널에서는 그래야만 할 수도 있습니다. 8페이지 제한이 있는 Physical Review Letters 저널에는 거의 매 호마다 이 장르의 고전적인 예시들이 실립니다. 이러한 종류의 차트에서는 중요한 값들을 플롯에서 정확하게 읽어낼 수 있도록 보장하는 것이 특히 중요합니다. 또한 연구에서 결정적인 결과를 제시하는 플롯이 될 수도 있습니다. 차트를 업으로 하지 않는 사람들에게는 흥미롭지 않을 수도 있지만, 동료들에게는 흥미롭고, 그만큼 중요하게 이해 가능할 것입니다.
 
-This type of visualisation is especially popular in the big science journals like *Nature* and *Science*, where space is at a premium. We won't cover this type of plot in this book, because it tends to be very bespoke.
+이 유형의 시각화는 공간이 부족한 *Nature*나 *Science*와 같은 대형 과학 저널에서 특히 인기가 많습니다. 매우 맞춤형으로 제작되는 경향이 있기 때문에 이 책에서는 다루지 않겠습니다.
 
-### Narrative Data Viz
+### 서사적 데이터 시각화 (Narrative Data Viz)
 
-The third and final kind is narrative data visualisation. This is the one that requires the most thought in the step where you go from the first view to the end product. It's a visualisation that doesn't just show a picture, but gives an insight. These are the kind of visualisations that you might see in the *Financial Times*, *The Economist*, or on the *BBC News* website. They come with aids that help the viewer focus on the aspects that the creator wanted them to (you can think of these aids or focuses as doing for visualisation what bold font does for text). They're well worth using in your work, especially if you're trying to communicate a particular narrative, and especially if the people you're communicating with don't have deep knowledge of the topic. You might use them in a paper that you hope will have a wide readership, in a blog post summarising your work, or in a report intended for a policymaker.
+세 번째이자 마지막 종류는 서사적 데이터 시각화입니다. 첫 번째 뷰에서 최종 결과물로 가는 단계에서 가장 많은 고민이 필요한 시각화입니다. 단순히 그림을 보여주는 것이 아니라 통찰력을 제공하는 시각화입니다. 이들은 *Financial Times*, *The Economist*, 또는 *BBC News* 웹사이트에서 볼 수 있는 종류의 시각화들입니다. 제작자가 시청자에게 강조하고 싶었던 측면에 집중할 수 있도록 돕는 보조 장치들이 함께 제공됩니다(이러한 보조 장치나 강조점들은 텍스트의 굵은 글씨가 하는 역할을 시각화에서 수행한다고 생각할 수 있습니다). 특정 서사를 전달하려고 할 때, 특히 소통하려는 사람들이 해당 주제에 대한 깊은 지식이 없을 때 작업에 활용할 가치가 충분히 있습니다. 넓은 독자층을 기대하는 논문이나, 작업을 요약한 블로그 포스트, 또는 정책 결정자를 위한 리포트 등에서 사용할 수 있습니다.
 
-You can find more information on the topic of communicating via data visualisations in the {ref}`communicate-plots` chapter.
+데이터 시각화를 통한 소통 주제에 대한 더 많은 정보는 {ref}`communicate-plots` 장에서 찾을 수 있습니다.

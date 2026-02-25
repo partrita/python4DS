@@ -10,192 +10,192 @@ kernelspec:
   name: python3
 ---
 (command-line)=
-# The Command Line
+# 명령줄 (The Command Line)
 
-In this chapter, you'll meet the *command line* and learn how to use it. Beyond a few key commands like `pixi add <packagename>` you don't strictly need to know how to use the command line to follow the rest of this book. However, even a tiny bit of knowledge of the command line goes a long way in coding and will serve you well.
+이 장에서는 *명령줄(command line)*을 만나보고 사용법을 배울 것입니다. `pixi add <packagename>`과 같은 몇 가지 주요 명령어를 제외하면, 이 책의 나머지 부분을 따라가기 위해 명령줄 사용법을 반드시 알아야 하는 것은 아닙니다. 하지만 명령줄에 대한 아주 작은 지식이라도 코딩에서는 큰 도움이 되며 여러분에게 유용할 것입니다.
 
-To try out any of the commands in this chapter on your machine, you can select 'New Terminal' from the menu bar in Visual Studio Code (Mac and Linux), use the Windows Subsystem for Linux or git bash (Windows), or use a free [online terminal](https://cocalc.com/doc/terminal.html).
+이 장의 명령어들을 여러분의 컴퓨터에서 직접 시도해 보려면, Visual Studio Code(맥 및 리눅스)의 메뉴 바에서 'New Terminal'을 선택하거나, 윈도우의 경우 Linux용 Windows 하위 시스템(WSL) 또는 git bash를 사용하거나, 무료 [온라인 터미널](https://cocalc.com/doc/terminal.html)을 사용할 수 있습니다.
 
-This chapter has benefited from numerous sources, including absolutely excellent notes by [Grant McDermott](https://grantmcdermott.com/), Melanie Walsh's [Introduction to Cultural Analytics & Python](https://melaniewalsh.github.io/Intro-Cultural-Analytics/welcome.html), [Data Science Bootstrap](https://ericmjl.github.io/data-science-bootstrap-notes/), [calmcode.io](https://calmcode.io/), and [Research Software Engineering with Python](https://merely-useful.tech/py-rse/). A promising resource that, at the time of writing, was still being compiled is [Data Science at the Command Line](https://www.datascienceatthecommandline.com/2e/).
+이 장은 [Grant McDermott](https://grantmcdermott.com/)의 훌륭한 노트, Melanie Walsh의 [Introduction to Cultural Analytics & Python](https://melaniewalsh.github.io/Intro-Cultural-Analytics/welcome.html), [Data Science Bootstrap](https://ericmjl.github.io/data-science-bootstrap-notes/), [calmcode.io](https://calmcode.io/), 그리고 [Research Software Engineering with Python](https://merely-useful.tech/py-rse/)을 포함한 수많은 소스의 도움을 받았습니다. 집필 당시 아직 편집 중이었던 유망한 리소스로 [Data Science at the Command Line](https://www.datascienceatthecommandline.com/2e/)이 있습니다.
 
-## What is the command line?
+## 명령줄이란 무엇인가요?
 
-The command line is a way to directly issue text-based commands to a computer one line at a time (as distinct from a graphical user interface, or GUI, that you navigate with a mouse). It goes under many names: shell, bash, terminal, CLI, and command line. These are actually different things but most people tend to use them to mean the same thing most of the time. The *shell* is the part of an operating system that you interact with but mostly people use shell to mean the command line. *bash* is the programming language that is used in the command line; it's actually a synonym for 'Born Again SHell'. The *terminal* is sometimes used to refer to the command line on Macs. Finally, a *CLI* is just an acronym for command line interface, and is often used in the context of an application; for example, uv has a command line interface because you run it on the command line to install packages (`pixi add packagename`).
+명령줄은 마우스로 탐색하는 그래픽 사용자 인터페이스(GUI)와 달리, 컴퓨터에 텍스트 기반 명령을 한 줄씩 직접 내리는 방법입니다. 쉘(shell), 배시(bash), 터미널(terminal), CLI, 명령줄 등 여러 이름으로 불립니다. 이것들은 실제로는 서로 다른 것들이지만, 대부분의 사람들은 대개 같은 의미로 사용합니다. *쉘*은 여러분이 상호 작용하는 운영 체제의 일부이지만, 사람들은 보통 명령줄을 의미할 때 쉘이라는 단어를 씁니다. *bash*는 명령줄에서 사용되는 프로그래밍 언어로, 사실 'Born Again SHell'의 약자입니다. *터미널*은 맥에서 명령줄을 가리킬 때 가끔 사용됩니다. 마지막으로 *CLI*는 명령줄 인터페이스(command line interface)의 약자로, 애플리케이션의 문맥에서 자주 사용됩니다. 예를 들어, uv는 패키지를 설치하기 위해 명령줄에서 실행하므로(`pixi add packagename`) 명령줄 인터페이스를 가지고 있습니다.
 
-It's worth mentioning that there's a big difference between the command line on UNIX based systems (MacOS and Linux), and on Windows systems. Here, we'll only address the UNIX version. There is a command line on Windows but it's not widely used for coding. If you're on a Windows machine, you can access a UNIX command line using the Windows Subsystem for Linux.
+UNIX 기반 시스템(MacOS 및 리눅스)과 윈도우 시스템의 명령줄 사이에는 큰 차이가 있다는 점을 언급할 가치가 있습니다. 여기서는 UNIX 버전만 다룰 것입니다. 윈도우에도 명령줄이 있지만 코딩용으로 널리 사용되지는 않습니다. 만약 윈도우 머신을 사용 중이라면, Linux용 Windows 하위 시스템을 사용하여 UNIX 명령줄에 접속할 수 있습니다.
 
-## Why is the command line useful?
+## 명령줄은 왜 유용한가요?
 
-The command line has many uses. Graphical user interfaces are, generally, a bit easier to use *but* they're not very repeatable or scalable. Because the command line uses text-based instructions and can be programmed, it is both repeatable and scalable; properties that are very useful for research and analysis.
+명령줄은 용도가 다양합니다. 그래픽 사용자 인터페이스는 일반적으로 사용하기 조금 더 쉽지만, 반복 가능성이나 확장성이 떨어집니다. 명령줄은 텍스트 기반 지침을 사용하고 프로그래밍이 가능하기 때문에 반복 가능하고 확장 가능합니다. 이러한 속성들은 연구와 분석에 매우 유용합니다.
 
-The broad reasons you might use the command line to issue instructions include:
+명령줄을 사용하여 지침을 내리는 포괄적인 이유는 다음과 같습니다:
 
-- software functionality: some software *only* has a command line interface
+- 소프트웨어 기능: 일부 소프트웨어는 *오직* 명령줄 인터페이스만 가지고 있습니다.
 
-- efficiency: your computer has limited memory, which graphical user interfaces use a lot of—the command line uses less
+- 효율성: 컴퓨터의 메모리는 제한되어 있는데, 그래픽 사용자 인터페이스는 메모리를 많이 사용합니다. 명령줄은 더 적게 사용합니다.
 
-- reproducibility: scripts that run on the command line are reproducible in a way that clicking around a graphical user interface is not
+- 재현성: 명령줄에서 실행되는 스크립트는 그래픽 사용자 인터페이스를 클릭하는 것과 달리 재현 가능합니다.
 
-- hardware functionality: for high-performance and cloud computing the command line is often the only game in town
+- 하드웨어 기능: 고성능 및 클라우드 컴퓨팅의 경우 명령줄이 유일한 방법인 경우가 많습니다.
 
-- automation: multiple programmes, with inputs and outputs, can be run in sequence from a script launched in the command line
+- 자동화: 입력과 출력이 있는 여러 프로그램을 명령줄에서 실행되는 스크립트를 통해 순차적으로 실행할 수 있습니다.
 
-Here are some specific tasks you might use the command line to complete:
+다음은 명령줄을 사용하여 완료할 수 있는 몇 가지 구체적인 작업들입니다:
 
-- keep your code under version control
+- 코드를 버전 관리 하에 두기
 
-- renaming and moving multiple files in one command
+- 한 번의 명령으로 여러 파일의 이름 변경 및 이동하기
 
-- finding files on the computer
+- 컴퓨터에서 파일 찾기
 
-- transforming between document types, for example $\LaTeX$ (.tex) to Word (.docx)
+- 문서 유형 간 변환하기 (예: $\LaTeX$ (.tex)에서 Word (.docx)로)
 
-- connecting to, and using, cloud resources
+- 클라우드 리소스에 연결 및 사용하기
 
-## Using the command line
+## 명령줄 사용하기
 
-Bash is often the default command line shell on UNIX but zsh has gained popularity and is now the default for Mac. If you're wondering what to use then I recommend zsh (Z Shell) from [oh-my-zsh](https://ohmyz.sh/).
+배시(Bash)는 UNIX의 기본 명령줄 쉘인 경우가 많지만, zsh가 인기를 얻어 현재 맥의 기본 쉘이 되었습니다. 무엇을 사용할지 고민 중이라면 [oh-my-zsh](https://ohmyz.sh/)의 zsh(Z Shell)를 추천합니다.
 
-To open up the command line within Visual Studio Code, you can use the <kbd>⌃</kbd> + <kbd>\`</kbd> keyboard shortcut (on Mac) or <kbd>ctrl</kbd> + <kbd>\`</kbd> (Windows/Linux), or click "View > Terminal".
+Visual Studio Code 내에서 명령줄을 열려면, 맥에서는 <kbd>⌃</kbd> + <kbd>\`</kbd> 단축키를, 윈도우/리눅스에서는 <kbd>ctrl</kbd> + <kbd>\`</kbd>를 사용하거나 "View > Terminal"을 클릭하세요.
 
-You should now see something like this
+이제 다음과 같은 화면이 보일 것입니다.
 
 ```bash
 username@hostname:~$
 ```
 
-Let's break down what this is telling us. `username` says who the current user is; `@hostname` denotes the name of the computer; `~` is the default (home) directory; and `$` is the 'command prompt', a signifier that this is where you should type your command. (Note that this line may look different depending on what shell and/or operating system you're using.)
+이것이 무엇을 말해주는지 분석해 보겠습니다. `username`은 현재 사용자가 누구인지 알려줍니다. `@hostname`은 컴퓨터의 이름을 나타냅니다. `~`는 기본(홈) 디렉토리입니다. 그리고 `$`는 '명령 프롬프트'로, 여기에 명령어를 입력해야 한다는 신호입니다. (사용 중인 쉘이나 운영 체제에 따라 이 줄의 모습이 다를 수 있음에 유의하세요.)
 
-Let's try a simple command: type `date` into a command line window and hit return. You should see today's date and time (and timezone). You could also try `echo hello` and `whoami`.
+간단한 명령어를 시도해 봅시다: 명령줄 창에 `date`를 입력하고 엔터를 누르세요. 오늘의 날짜와 시간(및 시간대)이 보일 것입니다. `echo hello`와 `whoami`도 시도해 볼 수 있습니다.
 
-All commands that you run in the terminal have the same structure:
-`command`, followed by `option(s)`, followed by `argument(s)`. The options are also called flags. An example serves to demonstrate this: if you have a terminal open in a directory that includes a CSV file called 'data.csv', the command to look at the first 5 lines is:
+터미널에서 실행하는 모든 명령어는 동일한 구조를 가집니다:
+`명령어(command)`, 그 뒤에 `옵션(option(s))`, 그 뒤에 `인수(argument(s))`. 옵션은 플래그(flags)라고도 불립니다. 예제를 통해 이를 확인해 보겠습니다: 'data.csv'라는 CSV 파일이 포함된 디렉토리에서 터미널을 열었다면, 처음 5줄을 확인하는 명령어는 다음과 같습니다:
 
 ```bash
 head -n 5 data.csv
 ```
 
-here `head` is the command that looks at the start of the file, `-n` is an option, `5` is the argument to get 5 lines of the file, and `data.csv` is the final argument-the file name.
+여기서 `head`는 파일의 시작 부분을 확인하는 명령어이고, `-n`은 옵션이며, `5`는 파일의 5줄을 가져오기 위한 인수이고, `data.csv`는 마지막 인수인 파일 이름입니다.
 
-The flags or options, such as `-n` in the example above, typically begin with a dash (`-`) or, occasionally, a double dash (`--`). They can also be chained together, for example `ls -la` combines `ls -a` and `ls -l`.
+위의 예제에서 `-n`과 같은 플래그나 옵션은 대개 대시 하나(`-`) 또는 가끔 대시 두 개(`--`)로 시작합니다. 이들은 함께 연결될 수도 있는데, 예를 들어 `ls -la`는 `ls -a`와 `ls -l`을 결합한 것입니다.
 
 ```{warning}
-Spaces take on a special role when using the command line. For this reason, it's good practice to avoid spaces in file names. If you need to refer to a filename with spaces in, you’ll need to use quotes or escape the spaces in the file names using a `\`, for example `this is my file.txt` becomes `this\ is\ my\ file.txt`
+명령줄을 사용할 때 공백은 특별한 역할을 합니다. 이러한 이유로 파일 이름에 공백을 피하는 것이 좋은 습관입니다. 공백이 포함된 파일 이름을 참조해야 한다면, 따옴표를 사용하거나 `\`를 사용하여 공백을 이스케이프해야 합니다. 예를 들어 `this is my file.txt`는 `this\ is\ my\ file.txt`가 됩니다.
 ```
 
-To run programmes from the command line, all you need is the name of the programme as the command: in fact, commands *are* programmes. The `date` command refers to an actual programme on your computer that you can find. And this also explains a bit of what's going on when you *run a script from the command line* (more on that later).
+명령줄에서 프로그램을 실행하려면 명령어 자리에 프로그램의 이름을 쓰기만 하면 됩니다. 사실 명령어 *자체가* 프로그램입니다. `date` 명령어는 여러분의 컴퓨터에서 찾을 수 있는 실제 프로그램을 가리킵니다. 그리고 이는 *명령줄에서 스크립트를 실행할 때* 어떤 일이 일어나는지를 부분적으로 설명해 줍니다(이에 대해서는 나중에 더 자세히 다룹니다).
 
-Once you've run a few commands, you'll notice that you can't navigate around the command line like you can a text file or Python script. Here are some tips for navigating the command line:
+명령어를 몇 번 실행해 보면, 텍스트 파일이나 파이썬 스크립트처럼 명령줄 내에서 자유롭게 돌아다닐 수 없다는 점을 눈치채셨을 것입니다. 다음은 명령줄 탐색을 위한 몇 가지 팁입니다:
 
-- use tab to complete commands you've only partially written out. Try it by typing `dat` then hitting tab.
+- 탭(tab) 키를 사용하여 부분적으로 작성된 명령어를 자동 완성하세요. `dat`를 입력한 뒤 탭을 눌러 확인해 보세요.
 
-- use the <kbd>↑</kbd> and <kbd>↓</kbd> keys to scroll through previous commands.
+- <kbd>↑</kbd> 및 <kbd>↓</kbd> 키를 사용하여 이전 명령어들을 훑어보세요.
 
-- to skip whole words, use <kbd>⌥</kbd> + <kbd>→</kbd> and <kbd>⌥</kbd> + <kbd>←</kbd> on Mac, or <kbd>ctrl</kbd> + <kbd>→</kbd> and <kbd>ctrl</kbd> + <kbd>←</kbd> on Windows and Linux.
+- 단어 전체를 건너뛰려면 맥에서는 <kbd>⌥</kbd> + <kbd>→</kbd> 및 <kbd>⌥</kbd> + <kbd>←</kbd>를, 윈도우와 리눅스에서는 <kbd>ctrl</kbd> + <kbd>→</kbd> 및 <kbd>ctrl</kbd> + <kbd>←</kbd>를 사용하세요.
 
-- <kbd>ctrl</kbd> + <kbd>a</kbd> to move the cursor to the beginning of the line.
+- <kbd>ctrl</kbd> + <kbd>a</kbd>를 누르면 커서가 줄의 시작 부분으로 이동합니다.
 
-- <kbd>ctrl</kbd> + <kbd>e</kbd> moves the cursor to the end of the line.
+- <kbd>ctrl</kbd> + <kbd>e</kbd>는 커서를 줄의 끝으로 이동시킵니다.
 
-- <kbd>ctrl</kbd> + <kbd>k</kbd> to delete everything to the right of the cursor.
+- <kbd>ctrl</kbd> + <kbd>k</kbd>를 누르면 커서 오른쪽의 모든 내용이 삭제됩니다.
 
-- <kbd>ctrl</kbd> + <kbd>u</kbd> to delete everything to the left of the cursor.
+- <kbd>ctrl</kbd> + <kbd>u</kbd>를 누르면 커서 왼쪽의 모든 내용이 삭제됩니다.
 
-- <kbd>ctrl</kbd> + <kbd>r</kbd> to search through previously used commands
+- <kbd>ctrl</kbd> + <kbd>r</kbd>을 사용하여 이전에 사용한 명령어들을 검색하세요.
 
-### Navigating directories
+### 디렉토리 탐색하기
 
-While we're on navigating, it's useful to understand *where* in the computer you are when you open the command line. If you open a terminal pane within VS Code, you will start (by default at least) within the same folder as your project. Starting a terminal instance outside of VS Code will get you a terminal in a root directory for your computer; for example, on a Mac, opening a new terminal window starts you in `/Users/yourusername/`.
+탐색에 대해 이야기하는 김에, 명령줄을 열었을 때 컴퓨터의 *어디에* 있는지 이해하는 것이 유용합니다. VS Code 내에서 터미널 패널을 열면 기본적으로 프로젝트와 동일한 폴더 내에서 시작하게 됩니다. VS Code 외부에서 터미널 인스턴스를 시작하면 컴퓨터의 루트 디렉토리에서 터미널이 열립니다. 예를 들어 맥에서 새 터미널 창을 열면 `/Users/사용자이름/`에서 시작합니다.
 
-To find out "where" you are when you open a terminal, you can use the `pwd` command, which stands for "print working directory".
+터미널을 열었을 때 "어디"에 있는지 확인하려면 "print working directory"의 약자인 `pwd` 명령어를 사용할 수 있습니다.
 
-The table below shows some useful commands for moving around your computer using the command line. Note that `cd` accepts a location *relative* to your current directory.
+아래 표는 명령줄을 사용하여 컴퓨터 내에서 이동할 때 유용한 명령어들을 보여줍니다. `cd`는 현재 디렉토리를 기준으로 한 *상대* 경로를 받는다는 점에 유의하세요.
 
-| Command      | What it does |
+| 명령어 | 기능 |
 | ----------- | ----------- |
-| `pwd`      | Shows current directory       |
-| `cd`   | Change directory command        |
-| `cd ..`   | Go up one level in the directory (`cd ../..` for two levels)        |
-| `cd ~`   | Go to your home directory        |
-| `cd -`   | Go to the previous directory        |
-| `cd documents/papers`   | Go directly to a directory named 'papers' |
+| `pwd`      | 현재 디렉토리 표시 |
+| `cd`   | 디렉토리 변경 명령어 |
+| `cd ..`   | 상위 디렉토리로 한 단계 이동 (`cd ../..`는 두 단계) |
+| `cd ~`   | 홈 디렉토리로 이동 |
+| `cd -`   | 이전 디렉토리로 이동 |
+| `cd documents/papers`   | 'papers'라는 이름의 디렉토리로 직접 이동 |
 
-## Using Python on the command line
+## 명령줄에서 파이썬 사용하기
 
-There are several ways in which the command line is useful for Python (and these ways are applicable to other languages too).
+명령줄이 파이썬에 유용한 여러 가지 방법이 있습니다(이 방법들은 다른 언어에도 적용됩니다).
 
-Of course, packages are installed at the command line, for example to install Jupyter Lab (for running notebooks), the command is
+물론 패키지는 명령줄에서 설치됩니다. 예를 들어 (노트북 실행을 위한) Jupyter Lab을 설치하는 명령어는 다음과 같습니다.
 
 ```bash
 pixi add jupyterlab
 ```
 
-Say you have a script called `analysis.py`, you can run it with Python on the command line using
+`analysis.py`라는 스크립트가 있다면, 명령줄에서 다음과 같이 파이썬으로 실행할 수 있습니다.
 
 ```bash
 pixi run python analysis.py
 ```
 
-which calls Python as a programme and gives it `analysis.py` as the argument. If you have multiple versions of Python, which you should do if you're following best practice and using a version per project, then you can see *which* version of Python is being used with
+이는 파이썬을 프로그램으로 호출하고 `analysis.py`를 인수로 전달합니다. 만약 여러 버전의 파이썬을 가지고 있다면(프로젝트마다 별도의 버전을 사용하는 모범 사례를 따르고 있다면 그래야 합니다), 다음을 통해 *어떤* 파이썬 버전이 사용 중인지 확인할 수 있습니다.
 
 ```bash
 which python
 ```
 
-## Useful commands for the terminal
+## 터미널 유용 명령어
 
-Now we'll see some useful commands for the terminal.
+이제 터미널에서 유용한 명령어들을 살펴보겠습니다.
 
-| Command  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | What it does |
+| 명령어 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | 기능 |
 | ----------- | ----------- |
-| `man <command>`      | Shows a manual for the given command       |
-| `touch <filename>`   | Creates an empty file named `<filename>`        |
-| `code <filename>`   | Open a file in VS Code (creating it, if it does not exist) |
-| `mkdir <foldername>`   | creates a new folder called `foldername`|
-| `echo <text>`   | Prints `<text>`   |
-| `cat <filename>`   | Print the full contents of `<filename>` |
-| `head <filename>` | Print the start of a file |
-| `tail <filename>` | Print the end of a file |
-| `> <filename>`   | Redirects output from screen to `<filename>`. For example, `echo "Hello World" > hello.txt` |
-| `>> <filename>` | Redirects output from screen to the end of `<filename>`, ie appends output rather than overwrites it |
-| `|` | The pipe symbol: uses output from one command as input into another. For example, `head -n 10 data.csv | > hello_world.txt` would write the first 10 lines of data.csv into a file called hello_world.txt
-| `less <filename>` | Print out the contents of a file in paginated form. Use `ctrl+v` and `Alt+v` (or `⌘+v` and `⌥+v` on Mac) to move up and down. Press `q` to quit.|
-| `wc -l` | Returns number of lines in input, for example `cat <filename> | wc -l`. Use `wc` alone for word count. |
-| `sort` | Arrange lines in a file in alphabetical order |
-| `uniq` | Remove duplicate lines from input, for example `cat <filename> | uniq` or `uniq -d` to show duplicate files |
-| `mv` | Move or rename a file; for example, `mv file1 file2` would rename `file1` to `file2` while `mv file1 ~` would move `file1` to the home directory|
-| `cp` | Copy a file; for example, `cp file1 file2` would copy `file1` to `file2` while `cp file1 ~` would make a copy of `file1` in the home directory|
-| `rm <filename>` | Permanently remove a file |
-| `rmdir <directory>` | Permanently remove an empty directory |
-| `rm -rf <directory>` | ⚠ Permanently remove everything in a directory ⚠ |
-| `grep <searchterm>` | Search for a given term, for example `cat hello_world.txt | grep world` |
-| `ls` | Basically, this means list stuff (files and folders) in the current directory |
-| `ls -a` | List stuff in the current directory even if it's hidden |
-| `ls -l` | List stuff in a more readable format and show permissions |
-| `ls -S` | List stuff by size |
-| `file <filename>` | Give information on the file type of `<filename>`|
-| `find` | Find specific files on your computer, can be piped into other commands for example `find *.md -size +5k -type f | xargs wc -l` will count the number of lines `wc -l` of all files, `-type f`, ending in `.md` that are greater than 5 kilobytes in size, `-size +5k`. |
-| `diff -u <filename1> <filename2>` | Show a single summary of the differences between two files. |
+| `man <command>`      | 주어진 명령어에 대한 매뉴얼 표시 |
+| `touch <filename>`   | `<filename>`이라는 이름의 빈 파일 생성 |
+| `code <filename>`   | VS Code에서 파일 열기 (파일이 없으면 생성) |
+| `mkdir <foldername>`   | `foldername`이라는 이름의 새 폴더 생성 |
+| `echo <text>`   | `<text>` 출력 |
+| `cat <filename>`   | `<filename>`의 전체 내용 출력 |
+| `head <filename>` | 파일의 시작 부분 출력 |
+| `tail <filename>` | 파일의 끝 부분 출력 |
+| `> <filename>`   | 화면 출력을 `<filename>`으로 리다이렉션. 예: `echo "Hello World" > hello.txt` |
+| `>> <filename>` | 출력을 화면 대신 `<filename>`의 끝에 추가 (덮어쓰지 않음) |
+| `|` | 파이프 심볼: 한 명령어의 출력을 다른 명령어의 입력으로 사용. 예: `head -n 10 data.csv | > hello_world.txt`는 data.csv의 처음 10줄을 hello_world.txt 파일에 기록함 |
+| `less <filename>` | 파일 내용을 페이지 단위로 출력. `ctrl+v`와 `Alt+v`(맥은 `⌘+v`와 `⌥+v`)로 이동. `q`를 눌러 종료 |
+| `wc -l` | 입력의 줄 수 반환. 예: `cat <filename> | wc -l`. 단어 수를 세려면 `wc`만 사용 |
+| `sort` | 파일의 줄을 알파벳 순서로 정렬 |
+| `uniq` | 입력에서 중복된 줄 제거. 예: `cat <filename> | uniq` 또는 중복 파일만 보려면 `uniq -d` |
+| `mv` | 파일 이동 또는 이름 변경. 예: `mv file1 file2`는 이름을 변경하고, `mv file1 ~`은 홈 디렉토리로 이동 |
+| `cp` | 파일 복사. 예: `cp file1 file2`는 복사본을 만들고, `cp file1 ~`은 홈 디렉토리에 복사본 생성 |
+| `rm <filename>` | 파일 영구 삭제 |
+| `rmdir <directory>` | 비어 있는 디렉토리 영구 삭제 |
+| `rm -rf <directory>` | ⚠ 디렉토리 내의 모든 것을 영구 삭제 ⚠ |
+| `grep <searchterm>` | 특정 용어 검색. 예: `cat hello_world.txt | grep world` |
+| `ls` | 기본적으로 현재 디렉토리의 항목(파일 및 폴더) 나열 |
+| `ls -a` | 숨겨진 항목을 포함하여 현재 디렉토리의 모든 항목 나열 |
+| `ls -l` | 더 읽기 쉬운 형식으로 항목을 나열하고 권한 정보 표시 |
+| `ls -S` | 크기순으로 항목 나열 |
+| `file <filename>` | `<filename>`의 파일 형식 정보 제공 |
+| `find` | 컴퓨터에서 특정 파일 찾기. 다른 명령어와 파이프로 연결 가능. 예: `find *.md -size +5k -type f | xargs wc -l`은 5KB보다 큰(`.md`로 끝나는 모든 파일의) 줄 수를 계산함 |
+| `diff -u <filename1> <filename2>` | 두 파일 간의 차이점에 대한 요약 표시 |
 
-![More details of the grep command](https://pbs.twimg.com/media/DcPeD_CW0AEkSar?format=jpg&name=small)
-*More details of the grep command, by [@b0rk](https://twitter.com/b0rk).*
+![grep 명령어에 대한 더 자세한 내용](https://pbs.twimg.com/media/DcPeD_CW0AEkSar?format=jpg&name=small)
+*grep 명령어에 대한 더 자세한 내용, 제작: [@b0rk](https://twitter.com/b0rk).*
 
-You can write for loops in bash (remember, it's a language). The general structure is
+배시(bash)에서도 for 루프를 작성할 수 있습니다(기억하세요, 배시는 언어입니다). 일반적인 구조는 다음과 같습니다.
 
 ```bash
 for i in LIST
 do
-  OPERATION $i # the $ sign indicates a variable in bash
+  OPERATION $i # $ 기호는 배시에서 변수를 나타냄
 done
 ```
 
-These can be squeezed into a single line (though it's less readable):
+이들은 한 줄로 압축될 수도 있습니다(가독성은 떨어지지만요):
 
 ```bash
 for i in {1..5}; do echo $i; done
 ```
 
-A more interesting example is giving the number of lines of text, number of words, and number of characters of every CSV file in a directory:
+더 흥미로운 예제로, 디렉토리에 있는 모든 CSV 파일의 텍스트 줄 수, 단어 수, 문자 수를 구하는 방법입니다:
 
 ```bash
 for i in $(ls *.csv)
@@ -204,7 +204,7 @@ do
 done
 ```
 
-We can get even more fancy with the above example and put those counts in a new text file:
+위의 예제를 더 멋지게 발전시켜서 그 개수들을 새로운 텍스트 파일에 담을 수도 있습니다:
 
 ```bash
 touch counts_of_csvs.txt
@@ -214,44 +214,44 @@ do
 done
 ```
 
-A couple of new features appeared in the examples above.
+위의 예제들에서 몇 가지 새로운 기능이 나타났습니다.
 
-`*` is a *wildcard character*, it tells bash to look for anything that ends in ".csv". This is not the only special case; `?` serves a similar purpose of standing in for any character but just *one* character rather than arbitrarily many. If you had a folder with `file1.csv`, `file2.csv`, etc., up to 9, then you could use `file?.csv` to refer to all of them but this would not pick up `file10.csv`.
+`*`는 *와일드카드 문자*로, ".csv"로 끝나는 모든 것을 찾으라고 배시에게 지시합니다. 이것이 유일한 특수 사례는 아닙니다. `?`도 비슷한 목적으로 사용되지만, 임의의 개수가 아닌 딱 *하나*의 문자를 대신합니다. 만약 `file1.csv`, `file2.csv` 등 9번까지 있는 폴더가 있다면, `file?.csv`를 사용하여 모두 참조할 수 있지만 `file10.csv`는 선택되지 않을 것입니다.
 
-Another special character we've already seen is the curly brace, `{}`. Whenever you have a common substring in a series of commands using curly braces tells the command line to expand what's in them automatically. In an example above, this is used on 1 to 5. But it can also be used in, for example, file names:
+이미 보았던 또 다른 특수 문자는 중괄호 `{}`입니다. 일련의 명령어들에서 공통된 부분 문자열이 있을 때마다 중괄호를 사용하면 명령줄이 그 안의 내용을 자동으로 확장하도록 할 수 있습니다. 위의 예제에서 이는 1부터 5까지 사용되었습니다. 하지만 파일 이름 등에서도 사용될 수 있습니다:
 
 ```bash
 cp /path/to/project/{foo,bar,baz}.csv /newpath
 ```
 
-would copy the csv files called `foo`, `bar`, and `baz` to the directory `/newpath`. Similarly,
+이는 `foo.csv`, `bar.csv`, `baz.csv`라는 이름의 csv 파일들을 `/newpath` 디렉토리로 복사합니다. 이와 유사하게,
 
 ```bash
 touch {a..c}{.csv,.txt}
 ```
 
-would create the files a.csv, a.txt, b.csv, b.txt, c.csv, and c.txt.
+는 a.csv, a.txt, b.csv, b.txt, c.csv, c.txt 파일을 생성합니다.
 
-## Scripting
+## 스크립팅 (Scripting)
 
-For tasks that will be repeated, it's more reproducible and reliable to put your terminal commands into a script than executing them from memory each time—not to mention a lot easier! Because the command line has its own language, we can create scripts that execute commands. There are some differences between bash and zsh but we'll try and keep the guidelines general.
+반복될 작업의 경우, 매번 기억해내며 실행하는 것보다 터미널 명령어를 스크립트에 담아두는 것이 훨씬 재현 가능하고 신뢰할 수 있으며, 훨씬 쉽습니다! 명령줄은 자체적인 언어를 가지고 있기 때문에, 명령어를 실행하는 스크립트를 만들 수 있습니다. 배시(bash)와 zsh 사이에는 약간의 차이가 있지만 가이드는 일반적으로 유지하겠습니다.
 
-Create a script called `hello_world.sh`. Inside it, write:
+`hello_world.sh`라는 스크립트를 만드세요. 내부에 다음과 같이 작성합니다:
 
 ```bash
 #!/bin/bash
 echo "Hello World!"
 ```
 
-The first line is called a shebang and it indicates what programme to run the commands below with (sh means any Bash-compatible shell). The `#` character also indicates a comment. The second part will print out a string to the screen. Now, depending on whether you're using bash or zsh, run
+첫 번째 줄은 쉬뱅(shebang)이라고 불리며, 아래의 명령어들을 어떤 프로그램으로 실행할지 알려줍니다(sh는 모든 배시 호환 쉘을 의미합니다). `#` 문자는 주석을 나타내기도 합니다. 두 번째 부분은 화면에 문자열을 출력할 것입니다. 이제 배시나 zsh 중 사용 중인 것에 따라 다음을 실행하세요.
 
 ```bash
 bash hello_world.sh
-# or
+# 또는
 zsh hello_world.sh
 ```
 
-Let's see a more complex example:
+더 복잡한 예제를 보겠습니다:
 
 ```bash
 #!/bin/bash
@@ -259,59 +259,59 @@ echo "Starting program at $(date)"
 echo "Running program $0 with $# arguments
 ```
 
-which produces
+결과물은 다음과 같습니다.
 
 ```bash
 Starting program at Thu 25 Mar 2021 21:23:22 GMT
 Running program hello_world.sh with 0 arguments
 ```
 
-Notice that using `"$(command)"` inserted the output of the command into the text string. To assign variables in bash and zsh scripts, use the syntax `foo=bar` (no spaces) and access the value of the variable with `$foo`.
+`"$(command)"`를 사용하면 명령어의 출력이 텍스트 문자열에 삽입되는 것을 확인하세요. 배시와 zsh 스크립트에서 변수를 할당하려면 `foo=bar` 구문(공백 없음)을 사용하고, `$foo`로 변수의 값에 접근하세요.
 
-Strings can be defined with `'` and `"` delimiters, but they are not equivalent. Strings delimited with `'` are literal strings and will not substitute variable values whereas `"` delimited strings will.
+문자열은 `'`와 `"` 구분자로 정의될 수 있지만, 두 방식이 동일하지는 않습니다. `'`로 구분된 문자열은 리터럴 문자열로 변수 값을 치환하지 않지만, `"`로 구분된 문자열은 치환합니다.
 
-Bash and zsh have a couple of unusual features as compared with other languages because of what they are used for. One of those are the special variables that come pre-defined, one of which we saw in the example above. Here is a list of some of the main ones:
+배시와 zsh는 그 용도 때문에 다른 언어와 비교했을 때 몇 가지 특이한 기능을 가지고 있습니다. 그중 하나가 미리 정의된 특수 변수들인데, 위의 예제에서도 하나를 보았습니다. 주요 목록은 다음과 같습니다:
 
-- `$0` - Name of the script
-- `$1` to `$9` - Arguments to the script (ordered by the numbers)
-- `$@` - All the arguments
-- `$#` - Number of arguments
-- `!!` - Entire last command, including arguments
+- `$0` - 스크립트의 이름
+- `$1` ~ `$9` - 스크립트의 인수 (숫자 순서대로)
+- `$@` - 모든 인수들
+- `$#` - 인수의 개수
+- `!!` - 인수를 포함한 바로 직전의 전체 명령어
 
-You can find more of these special variables [here](https://tldp.org/LDP/abs/html/special-chars.html).
+더 많은 특수 변수들은 [여기](https://tldp.org/LDP/abs/html/special-chars.html)에서 찾을 수 있습니다.
 
-## Useful command line tools
+## 유용한 명령줄 도구들
 
-[**pandoc**](https://pandoc.org/) is absolutely brilliant: if you need to convert files containing text from one format to another, it really is a swiss-army knife. There isn't space here to list the ridiculous number of documents it can convert between, but, importantly, it can translate back and forth between all of the following: markdown, $\LaTeX$, Microsoft Word's docx, OpenOffice's ODT, HTML, and Jupyter Notebook.
+[**pandoc**](https://pandoc.org/)은 정말 훌륭합니다: 텍스트가 포함된 파일을 한 형식에서 다른 형식으로 변환해야 한다면, 이것은 진정한 맥가이버 칼과 같습니다. 여기서 변환 가능한 방대한 문서 목록을 다 나열할 수는 없지만, 중요한 점은 마크다운, $\LaTeX$, 마이크로소프트 워드의 docx, 오픈오피스의 ODT, HTML, 그리고 주피터 노트북 사이를 서로 자유롭게 번역할 수 있다는 것입니다.
 
-It can also write from any of those formats (and more) in one direction *to* PDF, Microsoft Powerpoint, and $\LaTeX$ Beamer.
+또한 이러한 형식들(및 그 이상)로부터 한 방향으로 PDF, 마이크로소프트 파워포인트, $\LaTeX$ Beamer를 생성할 수도 있습니다.
 
-To use **pandoc**, install it following the instructions on the website and then call it like this:
+**pandoc**을 사용하려면 웹사이트의 지침에 따라 설치한 후 다음과 같이 호출하세요:
 
 ```bash
 pandoc mydoc.tex -o mydoc.docx
 ```
 
-This is an example where the input is a .tex document and the output, `-o`, is a Microsoft Word docx file.
+이는 .tex 문서가 입력이고, `-o`를 통한 출력이 마이크로소프트 워드 docx 파일인 예제입니다.
 
-You can get quite fancy with **pandoc**, for example you can translate a whole book's worth of latex into a Word doc complete with a Word style, a bibliography via biblatex, equations, and figures. Nothing can save Word from being painful to use, but **pandoc** certainly helps.
+**pandoc**으로 상당히 정교한 작업도 할 수 있습니다. 예를 들어 책 한 권 분량의 latex을 워드 스타일, biblatex을 통한 참고문헌, 방정식, 그림이 모두 포함된 워드 문서로 번역할 수 있습니다. 워드 자체의 불편함을 완전히 해결할 수는 없어도 **pandoc**이 큰 도움을 주는 것은 확실합니다.
 
-[**eza**](https://eza.rocks/) is an upgrade on the `ls` command. It is designed to be an improved file lister with more features and better defaults. It uses colours to distinguish file types and metadata. Follow the instructions on the website to install it on your operating system. To replace `ls` with `eza`, you can use a terminal *alias*. There's a good guide [available here](https://denisrasulev.medium.com/eza-the-best-ls-command-replacement-9621252323e).
+[**eza**](https://eza.rocks/)는 `ls` 명령어를 업그레이드한 것입니다. 더 많은 기능과 더 나은 기본 설정을 갖춘 개선된 파일 나열 도구로 설계되었습니다. 색상을 사용하여 파일 형식과 메타데이터를 구분합니다. 웹사이트의 지침에 따라 운영 체제에 설치하세요. `ls`를 `eza`로 대체하려면 터미널 *별칭(alias)*을 사용할 수 있습니다. 좋은 가이드가 [여기](https://denisrasulev.medium.com/eza-the-best-ls-command-replacement-9621252323e)에 있습니다.
 
-**nano** is a built-in text editor that runs *within* the terminal. This can be really useful if you're working on the cloud (but it's not got the rich features of a GUI-based text editor like VS Code). To open a file using **nano**, the command is `nano file.txt`. Nano displays instructions on how to navigate when it loads up but exiting is the hardest part: when you're done, hit `Ctrl+X`, then `y` to save, and then `enter` to exit.
+**nano**는 터미널 *내부*에서 실행되는 내장 텍스트 에디터입니다. 클라우드에서 작업할 때 매우 유용할 수 있습니다(단, VS Code와 같은 GUI 기반 에디터처럼 풍부한 기능은 없습니다). **nano**를 사용하여 파일을 열려면 `nano file.txt` 명령어를 사용합니다. 나노는 로드될 때 탐색 방법에 대한 안내를 표시하지만 종료가 가장 어렵습니다: 작업이 끝나면 `Ctrl+X`를 누르고, 저장하려면 `y`를 누른 뒤, `enter`를 눌러 나갑니다.
 
-[**wget**](https://www.gnu.org/software/wget/) is a command-line utility for downloading files from the internet. It's very simple to use, the syntax is just `wget [options] [url]`. For example, to download the starwars csv file used in this book, the command is
+[**wget**](https://www.gnu.org/software/wget/)은 인터넷에서 파일을 다운로드하기 위한 명령줄 유틸리티입니다. 사용법은 매우 간단하며 구문은 `wget [options] [url]`입니다. 예를 들어, 이 책에서 사용된 starwars csv 파일을 다운로드하려면 명령어는 다음과 같습니다.
 
 ```bash
 wget https://github.com/aeturrell/coding-for-economists/blob/main/data/starwars.csv
 ```
 
-[**htop**](https://htop.dev/) is a tool that lets you see what processes are running on your computer at any time (across individual processors), and how much memory you are using up. To install it on a Mac, you can use `brew install htop` if you use homebrew. Otherwise you can compile it from source after downloading it from the website. To use it, simply type `htop` on the command line.
+[**htop**](https://htop.dev/)은 컴퓨터에서 현재 실행 중인 프로세스들(개별 프로세서별로)과 메모리 사용량을 언제든 확인할 수 있게 해주는 도구입니다. 맥에서는 홈브루(homebrew)를 사용 중이라면 `brew install htop`으로 설치할 수 있습니다. 그렇지 않다면 웹사이트에서 다운로드하여 소스에서 컴파일할 수 있습니다. 사용하려면 명령줄에 `htop`을 입력하기만 하면 됩니다.
 
-[**ncdu**](https://dev.yorhel.nl/ncdu) is a disk usage analyser. It reports, interactively and via the terminal, how much space in a folder is taking up. You can also use return to enter a folder and explore sub-folders. This is especially useful when using a remote computer that you can't view via a graphical user interface (GUI).
+[**ncdu**](https://dev.yorhel.nl/ncdu)는 디스크 사용량 분석기입니다. 폴더가 차지하는 공간이 얼마인지 터미널을 통해 대화형으로 보고합니다. 엔터 키를 사용하여 폴더 내부로 들어가 하위 폴더를 탐색할 수도 있습니다. 그래픽 사용자 인터페이스(GUI)를 볼 수 없는 원격 컴퓨터를 사용할 때 특히 유용합니다.
 
-[**ffmpeg**](https://www.ffmpeg.org/) is a command line tool that aims to "decode, encode, transcode, mux, demux, stream, filter and play pretty much anything that humans and machines have created. It supports the most obscure ancient formats up to the cutting edge." Look at the documentation for all of the uses.
+[**ffmpeg**](https://www.ffmpeg.org/)는 "인간과 기계가 만든 거의 모든 것을 디코딩, 인코딩, 트랜스코딩, 믹싱, 디믹싱, 스트리밍, 필터링 및 재생"하는 것을 목표로 하는 명령줄 도구입니다. 모든 용도에 대해서는 문서를 참고하세요.
 
-[**yank**](https://github.com/mptre/yank) reads input from stdin (what you see in the terminal) and displays a selection interface that allows a field to be selected and copied to the clipboard. A typical use case would be to copy and paste a file name that you've found from using the `ls` command. For example, running `ls -lah | yank` in a directory brings up a list of permissions, sizes, users, dates modified, and names of files. You can then navigate to the filename you want with the keyboard, hit return, and have that file name in the clipboard ready to paste into your next terminal command. There's a nice demo [here](https://calmcode.io/cool-cli/yank.html).
+[**yank**](https://github.com/mptre/yank)는 표준 입력(터미널에서 보는 내용)을 읽어 필드를 선택하고 클립보드에 복사할 수 있는 선택 인터페이스를 표시합니다. 전형적인 사용 사례는 `ls` 명령어로 찾은 파일 이름을 복사해서 붙여넣는 것입니다. 예를 들어 디렉토리에서 `ls -lah | yank`를 실행하면 권한, 크기, 사용자, 수정 날짜 및 파일 이름 목록이 나타납니다. 키보드로 원하는 파일 이름으로 이동하여 엔터를 누르면 해당 파일 이름이 클립보드에 저장되어 다음 터미널 명령어에 바로 붙여넣을 수 있습니다. [여기](https://calmcode.io/cool-cli/yank.html)에 좋은 데모가 있습니다.
 
-For more on the command line, see [The Art of the Command Line](https://github.com/jlevy/the-art-of-command-line). In terms of other commands, you might like to check out `patch`, `sed`, and `awk`.
+명령줄에 대한 더 자세한 내용은 [The Art of the Command Line](https://github.com/jlevy/the-art-of-command-line)을 참고하세요. 다른 명령어 중에는 `patch`, `sed`, `awk` 등을 확인해 보시면 좋습니다.

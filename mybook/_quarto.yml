@@ -8,11 +8,11 @@ book:
   date: "2/24/2026"
   chapters:
     - index.qmd
-    - part: "Introduction"
+    - part: "서론"
       chapters:
         - introduction.ipynb
         - prerequisites.ipynb
-    - part: "Quick Start"
+    - part: "빠른 시작"
       chapters:
         - whole-game.ipynb
         - data-visualise.ipynb
@@ -24,13 +24,13 @@ book:
         - data-import.ipynb
         - workflow-packages-and-environments.qmd
         - workflow-help.qmd
-    - part: "Visualise"
+    - part: "시각화"
       chapters:
         - visualise.qmd
         - vis-layers.ipynb
         - exploratory-data-analysis.ipynb
         - communicate-plots.ipynb
-    - part: "Transform"
+    - part: "변형"
       chapters:
         - boolean-data.ipynb
         - numbers.ipynb
@@ -40,22 +40,22 @@ book:
         - dates-and-times.ipynb
         - missing-values.ipynb
         - joins.ipynb
-    - part: "Import"
+    - part: "불러오기"
       chapters:
         - spreadsheets.ipynb
         - databases.ipynb
         - rectangling.ipynb
         - webscraping-and-apis.ipynb
-    - part: "Programme"
+    - part: "프로그래밍"
       chapters:
         - functions.ipynb
         - iteration.ipynb
         - command-line.qmd
-    - part: "Communicate"
+    - part: "소통"
       chapters:
         - markdown.qmd
         - quarto.qmd
-    - part: "Appendix"
+    - part: "부록"
       chapters:
         - references.qmd
 

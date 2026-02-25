@@ -10,105 +10,103 @@ kernelspec:
   name: python3
 ---
 (workflow-packages-and-environments)=
-# Workflow: Packages and Environments
+# 워크플로우: 패키지와 환경 (Workflow: Packages and Environments)
 
-In this chapter, you're going to learn about packages and how to install them plus virtual coding environments that keep your packages isolated and your projects reproducible.
+이 장에서는 패키지와 패키지를 설치하는 방법, 그리고 패키지를 격리하여 프로젝트를 재현 가능하게 유지해 주는 가상 코딩 환경에 대해 배울 것입니다.
 
-## Packages
+## 패키지 (Packages)
 
-### Introduction
+### 서론
 
-Packages (also called libraries) are key to extending the functionality of Python. It won't be long before you'll need to install some. There are packages for geoscience, for building websites, for analysing genetic data, for economics—pretty much for anything you can think of. Packages are typically not written by the core maintainers of the Python language but by enthusiasts, firms, researchers, academics, all sorts! Because anyone can write packages, they vary widely in their quality and usefulness. There are some that you'll be seeing them again and again.
+패키지(라이브러리라고도 함)는 파이썬의 기능을 확장하는 핵심입니다. 머지않아 패키지를 설치해야 할 일이 생길 것입니다. 지학, 웹사이트 구축, 유전자 데이터 분석, 경제학 등 상상할 수 있는 거의 모든 분야를 위한 패키지들이 있습니다. 패키지는 대개 파이썬 언어의 핵심 유지관리자들이 아니라 열성적인 개인, 기업, 연구자, 학자 등 다양한 사람들에 의해 작성됩니다! 누구나 패키지를 작성할 수 있기 때문에 품질과 유용성은 천차만별입니다. 하지만 반복해서 보게 될 아주 유명한 패키지들이 몇 가지 있습니다.
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Name a more iconic trio, I&#39;ll wait. <a href="https://t.co/pGaLuUxQ3r">pic.twitter.com/pGaLuUxQ3r</a></p>&mdash; Vicki Boykis (@vboykis) <a href="https://twitter.com/vboykis/status/1032631145035427840?ref_src=twsrc%5Etfw">August 23, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-The three Python packages **numpy**, **pandas**, and **maplotlib**, which respectively provide numerical, data analysis, and plotting functionality, are ubiquitous. So many scripts begin by importing all three of them, as in the tweet above!
+각각 수치 계산, 데이터 분석, 플로팅 기능을 제공하는 **numpy**, **pandas**, **matplotlib**라는 세 가지 파이썬 패키지는 어디에나 존재합니다. 위 트윗에서처럼 수많은 스크립트가 이 세 패키지를 임포트하는 것으로 시작합니다!
 
-There are typically two steps to using a new Python package:
+새로운 파이썬 패키지를 사용하는 데는 대개 두 단계가 필요합니다:
 
-1. *install* the package on the command line (aka the terminal), eg using `pixi add pandas`
+1. 명령줄(터미널)에서 패키지를 *설치*합니다. 예: `pixi add pandas`
 
-2. *import* the package into your Python session, eg using `import pandas as pd`
+2. 파이썬 세션에서 패키지를 *임포트(가져오기)*합니다. 예: `import pandas as pd`
 
-When you issue an install command for a specific package, it is automatically downloaded from the internet and installed in the appropriate place on your computer. To install extra Python packages, you issue install commands to a text-based window called the "terminal".
+특정 패키지에 대한 설치 명령을 내리면, 인터넷에서 자동으로 다운로드되어 여러분의 컴퓨터 적절한 위치에 설치됩니다. 추가적인 파이썬 패키지를 설치하려면 "터미널"이라고 불리는 텍스트 기반 창에 설치 명령을 입력합니다.
 
-### The Command Line in Brief
+### 명령줄 요약 (The Command Line in Brief)
 
-The *terminal* or *command line* or sometimes the *command prompt* was labelled 4 in the screenshot of Visual Studio Code from the chapter on {ref}`introduction`. The terminal is a text-based way to issue all kinds of commands to your computer (not just Python commands) and knowing a little bit about it is really useful for coding (and more) because managing packages, environments (which we haven't yet discussed), and version control (ditto) can all be done via the terminal. We'll come to these in due course in the chapter on {ref}`command-line`, but for now, a little background on what the terminal is and what it does.
+*터미널(terminal)* 또는 *명령줄(command line)*, 또는 가끔 *명령 프롬프트(command prompt)*라고 불리는 곳은 {ref}`introduction` 장의 Visual Studio Code 스크린샷에서 4번으로 표시되었습니다. 터미널은 (파이썬 명령뿐만 아니라) 여러분의 컴퓨터에 온갖 종류의 명령을 내리는 텍스트 기반 방법입니다. 패키지 관리, 환경(아직 논의하지 않았습니다), 버전 관리(마찬가지입니다) 등이 모두 터미널을 통해 수행될 수 있기 때문에 명령줄에 대해 조금 아는 것은 코딩(및 그 이상)에서 정말 유용합니다. 이에 대해서는 {ref}`command-line` 장에서 자세히 다루겠지만, 지금은 터미널이 무엇이고 무엇을 하는지 배경지식을 조금 알아보겠습니다.
 
 ```{note}
-To open up the command line within Visual Studio Code, use the <kbd>⌃</kbd> + <kbd>\`</kbd> keyboard shortcut (Mac) or <kbd>ctrl</kbd> + <kbd>\`</kbd> (Windows/Linux), or click "View > Terminal".
+Visual Studio Code 내에서 명령줄을 열려면, <kbd>⌃</kbd> + <kbd>\`</kbd> 단축키(맥) 또는 <kbd>ctrl</kbd> + <kbd>\`</kbd>(윈도우/리눅스)를 사용하거나 "View > Terminal"을 클릭하세요.
 
-If you want to open up the command line independently of Visual Studio Code, search for "Terminal" on Mac and Linux, and "Powershell" on Windows.
+Visual Studio Code와 별개로 명령줄을 열고 싶다면, 맥과 리눅스에서는 "Terminal"을, 윈도우에서는 "Powershell"을 검색해 보세요.
 ```
 
-Firstly, everything you can do by clicking on icons to launch programmes on your computer, you can also do via the terminal, also known as the command line. For many programmes, a lot of their functionality can be accessed using the command line, and other programmes *only* have a command line interface (CLI), including some that are used for data science.
+첫째, 여러분의 컴퓨터에서 아이콘을 클릭하여 프로그램을 실행할 수 있는 모든 작업은 명령줄(또는 터미널)을 통해서도 할 수 있습니다. 많은 프로그램의 기능을 명령줄에서 접근할 수 있으며, 일부 프로그램은 데이터 과학에 사용되는 것들을 포함하여 명령줄 인터페이스(CLI)만 가지고 있기도 합니다.
 
 ```{tip}
-The command line interacts with your operating system and is used to create, activate, or change Python installations.
+명령줄은 운영 체제와 상호 작용하며, 파이썬 설치본을 생성, 활성화 또는 변경하는 데 사용됩니다.
 ```
 
-Use Visual Studio Code to open a terminal window by clicking Terminal -> New Terminal on the list of commands at the very top of the window. If you have installed pixi on your computer, your terminal should look something like this as your 'command prompt':
+Visual Studio Code 창의 맨 위 명령 목록에서 Terminal -> New Terminal을 클릭하여 터미널 창을 여세요. 여러분의 컴퓨터에 pixi가 설치되어 있다면, '명령 프롬프트'는 다음과 같이 보일 것입니다:
 
 ```bash
-your-username@your-computer current-directory %
+사용자이름@컴퓨터이름 현재-디렉토리 %
 ```
 
-on Mac, and the same but with '%' replaced by '$' on linux, and (using Powershell)
+맥의 경우이며, 리눅스에서는 '%' 대신 '$'가 보일 것입니다. 윈도우(Powershell 사용 시)의 경우:
 
 ```powershell
 PS C:\Windows\System32>
 ```
 
-on Windows.
-
-You can check that pixi has successfully installed Python in your current project's folder by running
+다음 명령을 실행하여 pixi가 현재 프로젝트 폴더에 파이썬을 성공적으로 설치했는지 확인할 수 있습니다.
 
 ```bash
 pixi run python --version
 ```
 
-For now, to at least try out the command line, let's use something that works across all three of the major operating systems. Type `pixi run python` on the command prompt that came up in your new terminal window. You should see information about your installation of Python appear, including the version, followed by a Python prompt that looks like `>>>`. This is a kind of interactive Python session, in the terminal. It's much less rich than the one available in Visual Studio Code (it can't run scripts line-by-line, for example) but you can try `print('Hello World!')` and it will run, printing your message. To exit the terminal-based Python session, type `exit()` to go back to the regular command line.
+우선 명령줄을 한 번 시도해 보기 위해, 세 가지 주요 운영 체제 모두에서 작동하는 명령을 써보겠습니다. 새 터미널 창에 나타난 명령 프롬프트에 `pixi run python`을 입력하세요. 파이썬 버전을 포함하여 설치된 파이썬 정보가 나타나고, 그 뒤에 `>>>` 모양의 파이썬 프롬프트가 보일 것입니다. 이것은 터미널에서 실행되는 일종의 대화형 파이썬 세션입니다. Visual Studio Code에서 제공하는 것보다는 훨씬 기능이 적지만(예를 들어 스크립트를 한 줄씩 실행할 수는 없습니다), `print('Hello World!')`를 입력하면 여러분의 메시지가 출력되는 것을 확인할 수 있습니다. 터미널 기반 파이썬 세션을 종료하려면 `exit()`를 입력하여 일반 명령줄로 돌아가세요.
 
-### Installing Packages
+### 패키지 설치하기
 
-To install extra Python packages, the default and easiest way is to use `pixi add **packagename**`. There are over 330,000 Python packages on PyPI (the Python Package Index)! You can see what packages you have installed already by running `pixi list` into the command line.
+추가 파이썬 패키지를 설치하는 가장 기본적이고 쉬운 방법은 `pixi add **패키지이름**`을 사용하는 것입니다. PyPI(파이썬 패키지 인덱스)에는 330,000개가 넘는 파이썬 패키지가 있습니다! 명령줄에 `pixi list`를 입력하여 이미 설치된 패키지들을 볼 수 있습니다.
 
-`pixi add ...` will install packages into the special Python environment in your current folder (it sits in a subdirectory called ".pixi" which will be hidden by default on most systems.) It's really helpful and good practice to have one Python environment per project, and **pixi** does this automatically for you.
+`pixi add ...`는 현재 폴더 내의 특별한 파이썬 환경에 패키지를 설치합니다(이 환경은 대부분의 시스템에서 기본적으로 숨겨져 있는 ".pixi"라는 하위 디렉토리에 위치합니다). 프로젝트마다 하나의 독립된 파이썬 환경을 갖는 것은 매우 유익하고 좋은 관행이며, **pixi**가 이를 자동으로 처리해 줍니다.
 
-```{admonition} Exercise
-Try installing the **matplotlib**, **pandas**, **statsmodels**, and **skimpy** packages using `pixi add`.
+```{admonition} 연습 문제
+`pixi add`를 사용하여 **matplotlib**, **pandas**, **statsmodels**, **skimpy** 패키지를 설치해 보세요.
 ```
 
-### Using Packages
+### 패키지 사용하기
 
-Once you have installed a package, you need to be able to use it! This is usually done via an import statement at the top of your script or Jupyter Notebook. For example, to bring in **pandas**, it's
+패키지를 설치했다면, 이를 사용할 수 있어야 합니다! 이는 대개 스크립트나 주피터 노트북 최상단에 임포트(import) 문을 써서 수행합니다. 예를 들어, **pandas**를 가져오려면 다음과 같이 합니다.
 
 ```python
 import pandas as pd
 ```
 
-Why does Python do this? The idea of not just loading every package is to provide clarity over what function is being called from what package. It's also not necessary to load every package for every piece of analysis, and you often actually want to know what the *minimum* set of packages is to reproduce an analysis. Making the package imports explicit helps with all of that.
+왜 파이썬은 이런 방식을 사용할까요? 모든 패키지를 한꺼번에 로드하지 않는 이유는 어떤 패키지의 어떤 함수가 호출되고 있는지 명확히 하기 위해서입니다. 또한 모든 분석 작업에 모든 패키지를 로드할 필요는 없으며, 종종 분석을 재현하기 위해 필요한 *최소한*의 패키지 세트가 무엇인지 알고 싶을 때가 있습니다. 패키지 임포트를 명시적으로 하는 것은 이 모든 과정에 도움이 됩니다.
 
-You may also wonder why one doesn't just use `import pandas as pandas`. There's actually nothing stopping you doing this except i) it's convenient to have a shorter name and ii) there does tend to be a convention around imports, ie `pd` for **pandas** and `np` for **numpy**, and your code will be clearer to yourself and others if you follow the conventions.
+왜 단순히 `import pandas as pandas`라고 하지 않는지 궁금할 수도 있습니다. 사실 그렇게 해도 상관없지만, i) 더 짧은 이름을 사용하는 것이 편리하고 ii) 임포트 관례가 존재하기 때문입니다. 즉, **pandas**는 `pd`, **numpy**는 `np`로 사용하는 것이 본인과 다른 사람들에게 코드를 더 명확하게 전달하는 방법이며 관례를 따르는 것이 좋습니다.
 
-## Virtual Code Environments
+## 가상 코딩 환경 (Virtual Code Environments)
 
-Virtual code environments allow you to isolate all of the packages that you're using to do analysis for one project from the set of packages you might need for a different project. They're an important part of creating a reproducible analytical pipeline but a key benefit is that others can reproduce the environment you used and it's best practice to have an isolated environment per project.
+가상 코딩 환경은 특정 프로젝트의 분석을 위해 사용하는 모든 패키지를 다른 프로젝트에서 필요할 수 있는 패키지 세트와 격리할 수 있게 해줍니다. 이는 재현 가능한 분석 파이프라인을 만드는 데 중요한 부분입니다. 핵심적인 이점은 다른 사람이 여러분이 사용한 환경을 그대로 재현할 수 있다는 것이며, 프로젝트마다 독립된 환경을 갖는 것이 모범 사례입니다.
 
-To be more concrete, let's say you're using Python 3.9, **statsmodels**, and **pandas** for one project, project A. And, for project B, you need to use Python 3.10 with **numpy** and **scikit-learn**. Even with the same version of Python, best practice would be to have two separate virtual Python environments: environment A, with everything needed for project A, and environment B, with everything needed for project B. For the case where you're using different versions of Python, this isn't just best practice, it's essential.
+더 구체적인 예를 들어보겠습니다. 프로젝트 A를 위해 파이썬 3.9, **statsmodels**, **pandas**를 사용하고 있다고 합시다. 그리고 프로젝트 B를 위해서는 **numpy**와 **scikit-learn**이 포함된 파이썬 3.10을 사용해야 합니다. 비록 파이썬 버전이 같더라도, 프로젝트 A에 필요한 모든 것이 담긴 환경 A와 프로젝트 B를 위한 환경 B라는 두 개의 별도 가상 파이썬 환경을 갖는 것이 모범 사례입니다. 서로 다른 파이썬 버전을 사용하는 경우에는 이는 선택이 아닌 필수입니다.
 
-Many programming languages now come with an option to install packages and a version of the language in isolated environments. In Python, there are multiple tools for managing different environments. And, of those, the easiest to work with is probably [**pixi**](https://docs.astral.sh/pixi/).
+이제 많은 프로그래밍 언어들이 격리된 환경에 언어 버전과 패키지들을 설치할 수 있는 옵션을 제공합니다. 파이썬에는 서로 다른 환경을 관리하기 위한 여러 도구들이 있습니다. 그중에서도 가장 다루기 쉬운 도구는 아마도 [**pixi**](https://docs.astral.sh/pixi/)일 것입니다.
 
-You can see all of the packages in the environment created in your current folder by running `pixi list` on the command line. Here's an example of looking at the installed packages within this very book, filtering them just to the ones beginning with "s".
+명령줄에서 `pixi list`를 실행하여 현재 폴더에 생성된 환경의 모든 패키지를 볼 수 있습니다. 다음은 이 책 자체의 프로젝트 내에서 설치된 패키지들 중 "s"로 시작하는 것들만 필터링하여 확인하는 예제입니다.
 
 ```{code-cell} bash
 pixi list | grep ^s
 ```
 
-### The pyproject.toml file in Python Environments
+### 파이썬 환경의 pyproject.toml 파일
 
-You may have noticed that a file called `pyproject.toml` has been created.
+`pyproject.toml`이라는 파일이 생성된 것을 눈치채셨을 수도 있습니다.
 
 ```{code-cell} ipython
 import toml
@@ -117,12 +115,12 @@ from rich import print_json
 print_json(data=toml.load("pyproject.toml"))
 ```
 
-This lists all of the dependencies, and the version, of a **pixi** Python project. There are lots of benefits to tracking what versions of packages you're using like this. One of the most important is that you can *share* projects with other people, and they can install them from these files too.
+이 파일은 **pixi** 파이썬 프로젝트의 모든 의존성 패키지와 버전을 나열합니다. 사용 중인 패키지 버전을 이렇게 추적하는 것에는 많은 이점이 있습니다. 가장 중요한 것 중 하나는 프로젝트를 다른 사람과 *공유*할 수 있고, 그들도 이 파일들로부터 환경을 그대로 설치할 수 있다는 점입니다.
 
-As you install or remove packages, the `pyproject.toml` file changes in lockstep.
+패키지를 설치하거나 제거함에 따라, `pyproject.toml` 파일도 그에 맞춰 변경됩니다.
 
-Noe that Visual Studio Code shows which Python environment you are using when you open a Python script or Jupyter Notebook.
+Visual Studio Code에서 파이썬 스크립트나 주피터 노트북을 열면 현재 사용 중인 파이썬 환경이 표시됩니다.
 
-![A typical user view in Visual Studio Code](https://github.com/aeturrell/coding-for-economists/blob/main/img/vscode_layout.png?raw=true)
+![Visual Studio Code의 전형적인 사용자 뷰](https://github.com/aeturrell/coding-for-economists/blob/main/img/vscode_layout.png?raw=true)
 
-In the screenshot above, you can see the project-environment in two places: on the blue bar at the bottom of the screen, and (in 5), at the top right hand side of the interactive window. A similar top right indicator is present when you have a Jupyter Notebook open too.
+위 스크린샷에서 프로젝트 환경을 두 곳에서 확인할 수 있습니다: 화면 하단의 파란색 바와, 대화형 창(5번)의 오른쪽 상단입니다. 주피터 노트북을 열었을 때도 오른쪽 상단에 비슷한 표시가 나타납니다.

@@ -52,7 +52,6 @@ python4ds = { path = ".", editable = true }
 render = "quarto render mybook"
 install = "pixi install"
 pre-commit = "pre-commit run --all-files"
-bump-version = "python version_bumper.py"
 ghp-import = "ghp-import -n -p -f mybook/_book"
 
 [tool.pixi.dependencies]
