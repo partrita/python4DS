@@ -69,3 +69,4 @@ format:
     code-fold: true
     toc: true
     code-summary: "코드 보기"
+    number-sections: false
