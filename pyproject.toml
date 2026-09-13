@@ -12,7 +12,7 @@ dependencies = [
     "ipykernel>=6.29.5",
     "jupyter>=1.1.1",
     "jupyter-book>=1.0.3",
-    "jupyterlab>=4.6.2",
+    "jupyterlab>=4.3.4",
     "lets-plot==4.5.2",
     "nbclient>=0.10.2",
     "nbstripout>=0.8.1",
@@ -27,7 +27,7 @@ dependencies = [
     "pixi",
     "polars>=1.19.0",
     "pre-commit>=4.0.1",
-    "pytest>=9.0.3",
+    "pytest>=8.3.4",
     "pyyaml>=6.0.2",
     "rich>=13.9.4",
     "scipy>=1.15.0",
@@ -37,37 +37,6 @@ dependencies = [
     "statsmodels>=0.14.4",
     "toml>=0.10.2",
     "watermark>=2.5.0",
-]
-
-# Security floors for transitive dependencies reported by Dependabot.
-# Keep these as uv overrides so the application dependency surface does not
-# change merely to constrain vulnerable transitive packages.
-[tool.uv]
-override-dependencies = [
-    "authlib>=1.8.0",
-    "fastmcp>=4.0.3",
-    "fonttools>=4.60.2",
-    "h11>=0.16.0",
-    "idna>=3.15",
-    "joblib>=1.6.0",
-    "jupyter-server>=2.20.0",
-    "jupyterlab>=4.6.2",
-    "lxml>=6.1.0",
-    "mistune>=3.3.0",
-    "nbconvert>=7.17.1",
-    "notebook>=7.5.6",
-    "pillow>=12.3.0",
-    "pyarrow>=20.0.0",
-    "pyjwt>=2.12.0",
-    "pytest>=9.0.3",
-    "python-dotenv>=1.2.2",
-    "python-multipart>=0.0.27",
-    "setuptools>=78.1.1",
-    "soupsieve>=2.8.4",
-    "starlette>=1.0.1",
-    "tornado>=6.5.6",
-    "urllib3>=2.6.0",
-    "wheel>=0.46.2",
 ]
 
 [tool.ruff.lint]
