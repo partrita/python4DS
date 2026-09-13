@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "uv"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    ignore:
+      # setuptools>=82 removed pkg_resources, which pybtex (via
+      # sphinxcontrib-bibtex) still imports. Widening this cap breaks the book build.
+      - dependency-name: "setuptools"

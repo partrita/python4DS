@@ -47,7 +47,7 @@ dependencies = [
     "requests>=2.33.0",
     "rich>=13.9.4",
     "scipy>=1.15.0",
-    "setuptools>=78.1.1,<84",  # ponytail: cap keeps pkg_resources for sphinxcontrib-bibtex/pybtex; drop when they migrate to importlib.metadata
+    "setuptools>=78.1.1,<82",  # ponytail: cap keeps pkg_resources for sphinxcontrib-bibtex/pybtex; drop when they migrate to importlib.metadata (do NOT widen: setuptools>=82 removed pkg_resources)
     "skimpy>=0.0.17",
     "soupsieve>=2.8.4",
     "sqlalchemy>=1.4.39",
