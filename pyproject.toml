@@ -7,7 +7,6 @@ requires-python = ">=3.10.0"
 dependencies = [
     "authlib>=1.6.9",
     "beautifulsoup4>=4.12.3",
-    "fastmcp>=3.4.7",
     "ghp-import>=2.1.0",
     "graphviz>=0.20.3",
     "h11>=0.16.0",
@@ -21,7 +20,6 @@ dependencies = [
     "joblib>=1.5.3",
     "lets-plot==4.5.2",
     "lxml>=6.1.0",
-    "mcp>=2.0.0",
     "mistune>=3.3.4",
     "nbclient>=0.10.2",
     "nbconvert>=7.17.1",
@@ -41,13 +39,14 @@ dependencies = [
     "pyarrow>=23.0.1",
     "pyarrow-hotfix>=0.7",  # ponytail: floor — 0.6 crashes on pyarrow>=21 (unregisters removed arrow.py_extension_type); drop when ibis drops the hotfix dep
     "pytest>=9.0.3",
+    "pygments>=2.20",  # security floor for CVE-2026-4539 (ReDoS)
     "python-dotenv>=1.2.2",
     "python-multipart>=0.0.27",
     "pyyaml>=6.0.2",
     "requests>=2.33.0",
     "rich>=13.9.4",
     "scipy>=1.15.0",
-    "setuptools>=78.1.1,<82",  # ponytail: cap keeps pkg_resources for sphinxcontrib-bibtex/pybtex; drop when they migrate to importlib.metadata (do NOT widen: setuptools>=82 removed pkg_resources)
+    "setuptools>=78.1.1,<82",  # ponytail: cap keeps pkg_resources for sphinxcontrib-bibtex/pybtex; do NOT widen (do NOT "fix" CVE-2026-59890: needs >=83 which drops pkg_resources; sdist/macOS-only, repo never builds sdists)
     "skimpy>=0.0.17",
     "soupsieve>=2.8.4",
     "sqlalchemy>=1.4.39",
