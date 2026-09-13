@@ -1,0 +1,30 @@
+name: Refresh dependencies
+
+on:
+  push:
+    branches:
+      - security/update-vulnerable-dependencies
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv lock --upgrade
+      - run: uv export --format requirements-txt --output-file requirements.txt
+      - name: Commit refreshed dependency files
+        run: |
+          if git diff --quiet -- uv.lock requirements.txt; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add uv.lock requirements.txt
+          git commit -m "chore: refresh dependency lockfiles"
+          git push
