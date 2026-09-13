@@ -46,7 +46,7 @@ dependencies = [
     "requests>=2.33.0",
     "rich>=13.9.4",
     "scipy>=1.15.0",
-    "setuptools>=78.1.1,<84",  # ponytail: cap keeps pkg_resources for sphinxcontrib-bibtex/pybtex; do NOT widen (do NOT "fix" CVE-2026-59890: needs >=83 which drops pkg_resources; sdist/macOS-only, repo never builds sdists)
+    "setuptools>=78.1.1,<82",  # ponytail: cap keeps pkg_resources for sphinxcontrib-bibtex/pybtex; do NOT widen (do NOT "fix" CVE-2026-59890: needs >=83 which drops pkg_resources; sdist/macOS-only, repo never builds sdists)
     "skimpy>=0.0.17",
     "soupsieve>=2.8.4",
     "sqlalchemy>=1.4.39",
