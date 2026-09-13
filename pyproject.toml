@@ -39,6 +39,7 @@ dependencies = [
     "pre-commit>=4.0.1",
     "pydantic-settings>=2.14.2",
     "pyarrow>=23.0.1",
+    "pyarrow-hotfix>=0.7",  # ponytail: floor — 0.6 crashes on pyarrow>=21 (unregisters removed arrow.py_extension_type); drop when ibis drops the hotfix dep
     "pytest>=9.0.3",
     "python-dotenv>=1.2.2",
     "python-multipart>=0.0.27",
