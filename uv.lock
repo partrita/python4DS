@@ -2011,15 +2011,15 @@ wheels = [
 
 [[package]]
 name = "palmerpenguins"
-version = "0.1.4"
+version = "0.1.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy" },
     { name = "pandas" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/67/6a/5f701d151baa94985cfebf56697f3c6f86546e96f75362b15f5b758251bd/palmerpenguins-0.1.4.tar.gz", hash = "sha256:d04d9064930e053fb0805261fe2aa26b4581fdabacaa54d393ddd65bb93bbaf2", size = 5626, upload-time = "2020-08-28T10:21:10.439Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/42/6c/3d3c177d6a8b02243df2ffe8657898eadc97065401fecbacdcc917a257af/palmerpenguins-0.1.6.tar.gz", hash = "sha256:9b5193e5c49a7f697ab47635aa3cea036cfc04ae66af992386e86ba89e7456ec", size = 232923, upload-time = "2026-02-01T21:32:43.323Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/23/78/d81191d1faf9c41e8707eb0c08dc6d489157bfa42faad62e0ab90c37ebbc/palmerpenguins-0.1.4-py3-none-any.whl", hash = "sha256:63c904db3dcef10e4ff1372f9b7f50a8f44c7364cc03f27f9a487fe5762d159c", size = 17523, upload-time = "2020-08-28T10:21:06.414Z" },
+    { url = "https://files.pythonhosted.org/packages/af/9e/7579e7f1ace559be76984107d9e056377993a787eb1fd557a098c32967bc/palmerpenguins-0.1.6-py3-none-any.whl", hash = "sha256:5c3be9af84dd703a25f1aaeadeac6ac770cfd38c1620d00089f581c023129ee0", size = 18878, upload-time = "2026-02-01T21:32:42.165Z" },
 ]
 
 [[package]]
