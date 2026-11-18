@@ -19,7 +19,7 @@ dependencies = [
     "jupyter-server>=2.20.0",
     "jupyterlab>=4.6.4",
     "joblib>=1.5.3",
-    "lets-plot==4.5.2",
+    "lets-plot==4.11.0",
     "lxml>=6.1.0",
     "mistune>=3.3.4",
     "nbclient>=0.10.2",
